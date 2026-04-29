@@ -434,14 +434,13 @@ Custom task extensions allow you to extend Lifecycle Workflows with custom busin
 
    ![](./Images/ETS1258.png)
 
-7. Verify:
+1. Verify:
    - The user account is disabled
    - The user has been removed from groups
+   - The user has been removed from teams
    - Licenses have been removed
 
-8. Navigate to the user profile to confirm the status changes.
-
----
+1. Navigate to the user profile to confirm the status changes.
 
 ## Task 3: Setting Up Access Reviews
 
@@ -522,198 +521,148 @@ Access Reviews in Microsoft Entra ID Governance enable organizations to efficien
 
 ## Task 4: Implementing Conditional Access Policies
 
-**Estimated Duration: 10 minutes**
-
-### Overview
-
 Conditional Access policies enforce security requirements based on conditions such as user identity, device compliance, location, and application being accessed. In this task, you will create a policy that requires MFA for cloud app access.
 
-### Step 1: Create a Conditional Access Policy
+1. In the Entra Admin portal left pane, expand **ID Protection (1)** and select **Risk-based Conditional Access  (2)** then click on **+ New policy (3)**.
 
-1. In the Microsoft Entra admin center, navigate to **Protection** > **Conditional Access**.
+   ![](./Images/ETS1411.png)
 
-2. Click **+ New policy** to create a new policy.
+1. Configure the Conditional Access Policy with the following details:
 
-   ![New conditional access policy](Images/ex1-task4-ca-new-policy.png)
-
-3. Set the **Name**: `Require MFA for IT Department - Cloud Apps`
-
-### Step 2: Configure Policy Assignments
-
-#### Users
-
-1. Under **Assignments**, click **Users** (or **0 users and groups selected**).
-
-2. Select **Select users and groups** > **Users and groups**.
-
-3. Click **Select** and search for **Dynamic-Department-IT** group.
-
-4. Click **Select** to confirm.
-
-#### Cloud Apps or Actions
-
-1. Click **Cloud apps or actions**.
-
-2. Select **Cloud apps** > **Select apps**.
-
-3. Click **Select** and choose:
-   - **Office 365** (or **Microsoft 365**) — to protect Microsoft 365 applications
-   - Click **Select** to confirm.
-
-#### Conditions
-
-1. Click **Conditions** to expand it.
-
-2. Click **Locations**:
-   - **Configure**: Yes
-   - **Exclude**: Select **All trusted locations**
-   - This means the policy applies when users are outside trusted locations.
-
-3. Click **Done**.
-
-4. Click **Device platforms** (optional):
-   - **Configure**: Yes
-   - **Include**: Any device
-   - Click **Done**.
-
-### Step 3: Configure Access Controls
-
-1. Under **Access controls**, click **Grant**.
-
-2. Select **Grant access** and check:
-   - **Require multi-factor authentication**
-
-3. Under multiple controls, select **Require all the selected controls**.
-
-4. Click **Select**.
-
-5. Optionally, under **Session**, click **Sign-in frequency**:
-   - Select **Periodic reauthentication**
-   - Set to **Every 8 hours**
-
-   ![CA policy grant settings](Images/ex1-task4-ca-grant.png)
-
-### Step 4: Enable and Save the Policy
-
-1. Under **Enable policy**, select **Report-only** first to test without enforcement.
-
-   > **Important:** Always test Conditional Access policies in **Report-only** mode before enabling them. This allows you to analyze the impact without affecting user access.
-
-2. Click **Create** to save the policy.
-
-### Step 5: Validate Policy Enforcement
-
-1. To test the policy in Report-only mode:
-
-   a. Open an **InPrivate/Incognito** browser window.
+   - Name: **Require MFA for IT Department - Cloud Apps** **(1)**
+   - **Assignments**:
+     - Click on **0 users or agents (Preview) selected** **(2)** under Users or agents (Preview) option.
+     - A new window will slide in, click on **Select users and Groups** **(3)** and then select the check box saying **Users and groups** **(4)**
+     - Now a Select window will open, here select **IT-Department** and then click on **Select** **(5)** button.
    
-   b. Navigate to [https://portal.office.com](https://portal.office.com) and sign in as a test user from the **Dynamic-Department-IT** group.
+         ![](./Images/ETS1412.png)
    
-   c. Complete the sign-in process.
+      - Click on **No target resources selected** **(1)** under Target resources option.
+      - Click on **All resources (formally All cloud apps)** **(2)**
 
-2. Return to the Microsoft Entra admin center and navigate to **Identity** > **Monitoring & health** > **Sign-in logs**.
+         ![](./Images/ETS1413.png)
 
-3. Find the recent sign-in for the test user.
+      - Click on **0 conditions selected** **(1)** under Conditions option.
+      - Then select **Device platforms** **(2)**
+      - Now in the Device platforms blade, toggle the *Configure* switch to **Yes** **(3)** and make sure that all the checkboxes below are selected.
+      - Then click on **Done** **(4)**
 
-4. Click on the sign-in event and go to the **Conditional Access** tab.
+         ![](./Images/ETS1414.png)
 
-5. Review the policy evaluation results:
-   - **Policy name**: Require MFA for IT Department - Cloud Apps
-   - **Result**: Report-only: Would Require MFA (or similar)
+      - Then select **Location** **(1)**
+      - Now in the Location blade, toggle the *Configure* switch to **Yes** **(2)** and select **Any network or location **(3)**.
 
-6. Once satisfied with the report-only results, return to the policy and change **Enable policy** to **On**.
+         ![](./Images/ETS1415.png)
+  
+      - Then select **Client Apps ** **(1)**
+      - Now in the Client Apps blade, toggle the *Configure* switch to **Yes** **(2)** and make sure that all the checkboxes below are selected.
+      - Then click on **Done** **(3)**.
 
-7. Click **Save** to enforce the policy.
+         ![](./Images/ETS1416.png)
 
-   > **Warning:** Before enabling, ensure you have excluded at least one break-glass admin account from this policy to prevent lockout.
+      - Click on **0 controls selected (1)** of `Grant` Section under the Access Control option.
+      - in the **Grant** pane, click on **Grant access**
+      - Select the check Box saying **Require multi-factor authentication** **(2)** 
+      - Then click on **Select** **(3)**
 
-### Step 6: Review Sign-in Logs for Policy Effectiveness
+         ![](./Images/ETS1417.png)
+   
+1. Toggle the **Enable Policy** switch to **On (1)** and click on **Create (2)**.
 
-1. Navigate to **Identity** > **Monitoring & health** > **Sign-in logs**.
+      ![](./Images/ETS1418.png)
 
-2. Apply filters:
-   - **Date**: Last 1 hour
-   - **Conditional Access**: Failure (to see enforced denials) or Success (to see successful MFA completions)
 
-3. Click on individual sign-in events and review:
-   - **Conditional Access policies applied**
-   - **Authentication methods used**
-   - **Status** of MFA completion
+1. Open an **Incognito browser**, paste the provided link, and log in using below **credentials**.
 
----
+      ```
+      portal.azure.com
+      ```
+
+   - Username: Paste the username  **<inject key="ADUser1 Email"></inject>** then click on **Next**.
+
+      ![](./Images/ETS1419.png)   
+
+   - Password:  Paste the password **<inject key="ADUser Password"></inject> (1)** and click on **Sign in (2)**.
+
+      ![](./Images/ETS1420.png)   
+
+1. If you see the **Action Required** pop up, click on **Ask later.**
+
+   >**Note:** If there's a dialog box saying **Stay signed in**, then select the **No** option.
+
+      ![](./Images/ETS1421.png)   
+
+     >**Note:** Follow the below steps, if MFA prompted:
+
+     - Click **Next** in **Lets keep your account secure**.
+     - On **Install Microsoft Authenticator**, click **Next**.
+
+       ![](./Images/ETS1422.png)    
+
+     - Click **Next**.
+
+       ![](./Images/ETS1423.png)     
+
+     - In **android**, go to the play store and Search for **Microsoft Authenticator** and Tap on **Install**.      
+
+       ![](./Images/ETS1424.png)    
+
+        >Note: For iOS, open the App Store and repeat the steps.
+
+        >Note: Skip if already installed.       
+
+     - Open the app and tap on **Scan a QR code**.
+
+     - Scan the QR code visible on the screen **(1)** and click on **Next (2)**.
+
+       ![](./Images/ETS1425.png)   
+
+     - Enter the digit displayed on the Screen in the Authenticator app on your mobile and tap on **Yes**.
+
+       ![](./Images/ETS1426.png)       
+
+     - Once the notification is approved, click on **Next**.
+
+     - Click on **Done**.
+
+       ![](./Images/ETS1427.png)        
+
+1. If prompted to stay signed in, you can click **"No"**.
+
+1. Tap on **Finish** in the Mobile Device.
+
+   > NOTE: While logging in again, enter the digits displayed on the screen in the **Authenticator app** and click on Yes.
+
+1. Return to the Microsoft Entra admin center and navigate to **Entra ID** > **Monitoring & health** > **Sign-in logs**.
+
+1. Verify the recent sign-ins
+
+   ![](./Images/ETS1428.png)
 
 ## Task 5: Monitoring and Auditing with Entra ID (Optional/Read Only)
 
-**Estimated Duration: 5 minutes**
+1. In the Microsoft Entra admin center, navigate to **Entra ID** > **Monitoring & health** > **Audit logs**.
 
-> **Note:** This task is optional and read-only. It provides visibility into governance and security activity in your tenant.
+1. Review the Audit logs activity across your tenant.
 
-### Step 1: Review Audit Logs
+   ![](./Images/ETS1511.png)
 
-1. In the Microsoft Entra admin center, navigate to **Identity** > **Monitoring & health** > **Audit logs**.
+1. Navigate to **Sign-in logs**.
 
-2. Review the available filters:
-   - **Date range**: Select last 7 days
-   - **Service**: Identity Governance
-   - **Category**: GroupManagement, UserManagement, or EntitlementManagement
+1. Review the sign-in activity across your tenant.
 
-3. Browse recent audit log entries to understand what governance activities have been recorded.
+   ![](./Images/ETS1512.png)
 
-4. Click on any log entry to view:
-   - Activity type
-   - Initiated by (actor)
-   - Target resources
-   - Modified properties
+1. Apply filters to find interesting 
 
-### Step 2: Analyze Sign-in Logs
+1. Navigate to **Home** to see the tenant summary dashboard.
 
-1. Navigate to **Identity** > **Monitoring & health** > **Sign-in logs**.
-
-2. Review the sign-in activity across your tenant.
-
-3. Apply filters to find interesting patterns:
-   - **Status**: Failure (to identify failed sign-in attempts)
-   - **Conditional Access**: Failure (to identify policy enforcement)
-
-4. Click on a failed sign-in to review:
-   - **Basic info**: IP address, location, device details
-   - **Authentication Details**: Methods attempted
-   - **Conditional Access**: Which policies blocked or allowed access
-
-### Step 3: Explore Entra ID Reporting Dashboards
-
-1. Navigate to **Identity** > **Overview** to see the tenant summary dashboard.
-
-2. Explore the following built-in reports:
-   - **Usage & insights**: Application usage, MFA adoption, Self-service password reset activity
-   - **Identity Protection**: Risk events, risky users, risky sign-ins
-   - **Access Reviews**: Review completion rates and outcomes
-
-3. Navigate to **Identity Governance** > **Dashboard** (if available) to see an overview of:
-   - Active access reviews
-   - Pending entitlement management requests
-   - Lifecycle workflow execution statistics
-
----
+   ![](./Images/ETS1513.png)
 
 ## Summary
 
-In this exercise, you have:
+In this exercise, you implemented key Identity Governance capabilities in Microsoft Entra ID, including dynamic group-based access, automated onboarding and offboarding workflows, and automatic license and application provisioning. You also integrated a custom Logic App extension, performed access reviews, and enforced security through Conditional Access with MFA. Additionally, you monitored activity using audit and sign-in logs. Together, these features establish a strong foundation for a modern Identity Governance and Administration (IGA) solution.
 
-- ✅ Created dynamic groups with attribute-based membership rules
-- ✅ Configured automated onboarding and offboarding lifecycle workflows
-- ✅ Set up automatic license assignment and application provisioning
-- ✅ Integrated a custom Logic App extension into a lifecycle workflow
-- ✅ Created and performed an access review for group membership
-- ✅ Implemented a Conditional Access policy requiring MFA
-- ✅ Reviewed audit logs and sign-in logs for governance visibility
+Now, click on Next from the lower right corner to move on to the next page.
 
-These capabilities form the foundation of a modern Identity Governance and Administration (IGA) solution built on Microsoft Entra ID.
-
-## Additional Resources
-
-- [Microsoft Entra ID Governance Documentation](https://learn.microsoft.com/en-us/entra/id-governance/)
-- [Lifecycle Workflows Overview](https://learn.microsoft.com/en-us/entra/id-governance/lifecycle-workflows-overview)
-- [Access Reviews Documentation](https://learn.microsoft.com/en-us/entra/id-governance/access-reviews-overview)
-- [Conditional Access Documentation](https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview)
-- [Group-Based Licensing](https://learn.microsoft.com/en-us/entra/identity/users/licensing-groups-assign)
+   ![](./Images/Nextpage.png)
