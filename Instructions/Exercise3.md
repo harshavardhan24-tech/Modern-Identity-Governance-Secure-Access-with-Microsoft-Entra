@@ -213,6 +213,8 @@ In this task, you will configure the credential issuance process and issue a ver
 
 In this task, you will simulate a real-world help desk identity verification scenario using Microsoft Entra Verified ID. Instead of traditional methods like passwords or security questions, the user will present a verified credential to securely prove their identity.
 
+### Task 3.1: Deploy sample verification application
+
 1. Now navigate back to Microsoft Entra admin center. click on **Organization setting** under Verified ID and copy the **DID Authority** and paste it in the notepad.
 
    ![](./Images/ETS3201.png)
@@ -258,7 +260,7 @@ In this task, you will simulate a real-world help desk identity verification sce
 
    ![](./Images/ETS3206.png)
 
-### Step 2: Configure Verification Request with Required Claims
+### Task 3.2: Configure Verification Request with Required Claims
 
 1. In the Microsoft Entra admin center, navigate to **Verified ID** > **Overview**.
 
@@ -276,7 +278,7 @@ In this task, you will simulate a real-world help desk identity verification sce
 
    ![Verification configuration](Images/ex3-task3-verification-config.png)
 
-### Step 3: Present Credential from Authenticator to Verify Identity
+### Task 3.3: Present Credential from Authenticator to Verify Identity
 
 1. On the verification application page, click **Verify My Identity** or **Verify Employee Credential**.
 
@@ -303,33 +305,42 @@ In this task, you will simulate a real-world help desk identity verification sce
 
 5. Tap **Share** to present the credential.
 
-### Step 4: Review Verification Results and Extracted Claims
+### Task 3.4: Review Verification Results and Extracted Claims
 
 1. After presenting the credential, return to the browser showing the verification application.
 
 2. The verification result page should display:
-   - **Verification status**: ✅ Verified
+   - **Verification status**: Verified
    - **Credential type**: VerifiedEmployee
-   - **Issuer**: Contoso Corporation (your DID)
-   - **Extracted claims**:
-     - Name: Alex Johnson
-     - Job Title: IT Manager
+   - **Issuer DID**: Your Verified ID issuer DID
+   - **Extracted claims** such as:
+     - Display Name
+     - Given Name
+     - Surname
+     - Email Address
    - **Credential validity**: Valid (within expiry date)
-   - **Credential not revoked**: True
+   - **Credential revocation status**: VALID
 
+   The page also displays additional verifiable credential details such as:
+   - Subject DID
+   - Credential ID (jti)
+   - Issuance date
+   - Expiration date
+   - Domain validation details
+     
    ![Verification result](Images/ex3-task3-verification-result.png)
 
-3. In the Microsoft Entra admin center, navigate to **Verified ID** > **Credentials** > **VerifiedEmployee**.
+3. In the Microsoft Entra admin center, navigate to **Verified ID** > **Overview** section, scroll down to see the **Activity log**.
 
-4. Review the **Verification activity** section to see the recent verification event logged.
+4. Review the Verification activity to see the recent verification event logged.
 
-### Step 5: Review Verification Logs in Microsoft Entra
+### Task 3.5: Review Verification Logs in Microsoft Entra
 
-1. Navigate to **Identity** > **Monitoring & health** > **Audit logs**.
+1. Navigate to **Entra ID** > **Monitoring & health** > **Audit logs**.
 
-2. Filter by:
-   - **Service**: Verified ID (or Decentralized Identity)
-   - **Date**: Today
+2. Apply the following filers:
+   - **Service**: Verified ID 
+   - **Date range**: Last 24 hours
 
 3. Review the audit log entries for:
    - Credential issuance events
@@ -343,6 +354,14 @@ In this task, you will simulate a real-world help desk identity verification sce
 
 ### Step 6: Understanding Real-World Help Desk Use Cases
 
+Consider a scenario where an employee contacts the IT help desk requesting access to a sensitive internal application or requesting an account unlock.
+
+Traditionally, the help desk agent might verify the employee’s identity using security questions, employee IDs, or manual checks against HR records. These methods can be time-consuming and may still be vulnerable to impersonation or social engineering attacks.
+
+With Microsoft Entra Verified ID, the employee can securely present a Verified Employee credential from Microsoft Authenticator. The help desk application verifies the credential and validates claims such as the employee’s name and job title before granting access or processing the request.
+
+In this exercise, the verification application simulated the help desk system, while Microsoft Authenticator was used to securely present the employee credential.
+
 The help desk scenario demonstrates several key benefits of Verified ID:
 
 | Traditional Help Desk | With Verified ID |
@@ -353,18 +372,24 @@ The help desk scenario demonstrates several key benefits of Verified ID:
 | No audit trail of how identity was verified | Full audit trail of every credential presentation |
 | Vulnerable to social engineering attacks | Resistant to social engineering — credential cannot be forged |
 
+Observe how:
+- The credential was verified cryptographically
+- Claims were securely shared from Microsoft Authenticator
+- Identity verification was completed within seconds
+- Verification activity was recorded for auditing purposes
+
 **Additional Use Cases for Verified ID:**
 
-1. **Partner/Vendor Onboarding**: Third-party companies can issue credentials to their employees, which your organization can verify without needing to trust the partner's identity provider directly.
+1. **Partner/Vendor Onboarding**: Third-party companies can issue credentials to their employees, which your organization can verify without directly relying on the partner’s identity provider.
 
-2. **Age Verification**: Verify a user is over 18 without collecting unnecessary personal data.
+2. **Age Verification**: Verify that a user meets an age requirement without collecting unnecessary personal information.
 
-3. **Professional Certification**: Verify a user holds a specific professional certification (e.g., issued by a professional body).
+3. **Professional Certification**: Validate professional certifications issued by trusted organizations.
 
-4. **Alumni Access**: Universities can issue credentials to graduates that employers or other organizations can verify.
+4. **Alumni Access**: Universities can issue digital credentials to graduates for verification by employers or other institutions.
 
-5. **High-Value Transaction Authorization**: Require employees to present a Verified ID credential before approving high-value financial transactions.
-
+5. **High-Value Transaction Authorization**: Require employees to present a Verified ID credential before approving sensitive or high-value transactions.
+   
 ## Summary
 
 In this exercise, you configured Microsoft Entra Verified ID by setting up the issuer, registering a decentralized identifier (DID), and verifying domain ownership. You created and issued a verified credential, stored it in the Authenticator app, and successfully used it for identity verification. Finally, you simulated a help desk scenario to understand how Verified ID can replace traditional authentication methods with a more secure and user-friendly approach.
