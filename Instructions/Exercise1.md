@@ -207,7 +207,7 @@ In this task, you will set up a lifecycle workflow to automate the onboarding pr
       - Generate TAP and send Email
       - Assign license to User
 
-   ![](./Images/E1T2-1S13.png)
+         ![](./Images/E1T2-1S13.png)
 
 1. Review the workflow configuration summary and click **Create**.
 
@@ -217,36 +217,40 @@ In this task, you will set up a lifecycle workflow to automate the onboarding pr
 
 In this task, you will create a custom task extension using a Logic App. This extension will be integrated into the lifecycle workflow to perform additional actions, such as sending notifications, and you will test its execution.
 
-1. In the Microsoft Entra admin center, expand **ID Governance (1)** in the left navigation pane and select **Lifecycle workflows (2)**.
+1. Select **Lifecycle workflows (1)** under **ID Governance** in the left navigation pane then **Lifecycle workflows (1)**. Under **Manage** select **Custom extensions (2)**, then click on **+ Add a custom extension (3)**.
 
-1. Select **Custom extensions (3)**, then click on **+ Add a custom extension (4)**.
+   ![](./Images/E1T2-2S1.png)
 
-   ![](./Images/ETS1213.png)
-
-1. On the Basics tab, Provide the below details then click on **Next Task behavior (3)**
+1. On the Basics tab, provide the below details then click on **Next Task behavior (3)**
 
       - **Name**: Onboarding email notification **(1)**
       - **Description**: Send the onboarding email notification to New joinee **(2)**.
 
-      ![](./Images/ETS1214.png)
+         ![](./Images/E1T2-2S2.png)
 
 1. On the Task behavior tab, leave it as default and click on **Next Details**
 
-   ![](./Images/ETS1215.png)
+   ![](./Images/E1T2-2S3.png)
 
 1. On the Details page, Provide the below details and click on **Create logoc app(4)**
+
       - **Subscription**: Leave it as default **(1)**
-      - **Resource group**:  **(2)**
+      - **Resource group**: **ODL-Entra-<inject key="Deployment ID" enableCopy="false"></inject>-01 (2)**
       - **Logic app name**: `custom-task-workflow` **(3)**
-   ![](./Images/ETS1216.png)
 
-1. Once the deployment is successful, click on **Next Review + create** and then click on **Create**.
+         ![](./Images/E1T2-2S4.png)
 
-   ![](./Images/ETS1217.png)
+1. Once the deployment is successful **(1)**, click on **Next: Review + create**. 
 
-1. Now go to custom extensions and click on **custom-task-workflow**
+   ![](./Images/E1T2-2S5.png)
 
-   ![](./Images/ETS1228.png)
+1. Then, select **Create** to initiate the deployment.
+
+   ![](./Images/E1T2-2S6.png)
+
+1. After the deployment is successful, click on **custom-task-workflow** under Logic app.
+
+   ![](./Images/E1T2-2S7.png)
 
 1. Copy the below code. Click on **Logic app code view (1)** then select all the existing code with **Ctrl + A** and then clcik **Ctrl + V** to paste the code and then click on **Save (3)** to save the code
 
@@ -411,122 +415,157 @@ In this task, you will create a custom task extension using a Logic App. This ex
    }
    ```
 
-   ![](./Images/ETS1229.png)
+   ![](./Images/E1T2-2S8.png)
 
 1. In the left pane, go to **Logic app designer (1)** then click on **+ (2)** and select **Add an action(3)**.
 
-   ![](./Images/ETS12111.png)
+   ![](./Images/E1T2-2S9.png)
 
 1. Search for **send an email (1)** and select **Send an email (V2) (2)** under `Office 365 outlook`.
 
    ![](./Images/ETS12112.png)
 
-1. Click on **Sign in**. A new window will pop-up, select the **ODL_user_<inject key="DeploymentID"></inject>**.
+1. Click on **Sign in**. A new window will pop-up, select the **ODL_user_<inject key="Deployment ID" enableCopy="false"></inject>**.
 
    ![](./Images/ETS12113.png)
+   
    ![](./Images/ETS12114.png)
 
 1. Provide the below information in the `Parameters` tab.
 
-   - **To**: @triggerBody()?['data']?['subject']?['email'] **(1)**
-   - **Subject**: Welcome Onboarding **(2)**
-   - **Body** : <p class=\"editor-paragraph\">Hello Dear @{triggerBody()?['data']?['subject']?['displayName']},<br><br>Welcome to your first day at work.<br><br>Attached, you will find the information for your first login:<br>Use the following username to log in:<br>@{triggerBody()?['data']?['subject']?['email']}<br><br>Set it up here: <a href=\"https://portal.office.com\" class=\"editor-link\">portal.office.com</a><br><br>If you have any questions, please contact your manager:<br>@{triggerBody()?['data']?['subject']?['manager']?['displayName']}<br>@{triggerBody()?['data']?['subject']?['manager']?['email']}<br><br>You can reach our helpdesk at 00011112222<br>Welcome “On-Board”!</p> **(3)**
+   - **To**: ```@triggerBody()?['data']?['subject']?['email']``` **(1)** 
 
-   ![](./Images/ETS12115.png)
+   - **Subject**: ```Welcome Onboarding``` **(2)**
 
-1. Scroll down and click on the dropdown of the Advanced option **(1)** then select **CC (2)**.
+   - **Body** : Copy and paste the below content **(3)**
+      ```
+      <p class="editor-paragraph">
+      Hello Dear @{triggerBody()?['data']?['subject']?['displayName']},<br><br>
 
-   ![](./Images/ETS12116.png)
+      Welcome to your first day at work.<br><br>
 
-1. In the cc box provide the following text **(1)** to add Manager ID and save it **(2)**
+      Attached, you will find the information for your first login.<br><br>
+
+      Use the following username to log in:<br>
+      @{triggerBody()?['data']?['subject']?['email']}<br><br>
+
+      Set it up here:
+      <a href="https://portal.office.com" class="editor-link">portal.office.com</a><br><br>
+
+      If you have any questions, please contact your manager:<br>
+      @{triggerBody()?['data']?['subject']?['manager']?['displayName']}<br>
+
+      <a href="mailto:@{triggerBody()?['data']?['subject']?['manager']?['email']}">
+      @{triggerBody()?['data']?['subject']?['manager']?['email']}
+      </a><br><br>
+
+      You can reach our helpdesk at 00011112222.<br><br>
+
+      Welcome On-Board!
+      </p>
+      ```
+    
+      ![](./Images/E1T2-2S12.png)
+
+1. Scroll down and click on the dropdown of the Advanced parameters **(1)** then select **CC (2)**.
+
+   ![](./Images/E1T2-2S13.png)
+
+   ![](./Images/E1T2-2S13-1.png)
+
+1. In the cc box provide the following text **(1)** to add Manager ID and click on **Save (2)** save it. 
 
    ```
    @triggerBody()?['data']?['subject']?['manager']?['email']
    ```
 
-   ![](./Images/ETS12117.png)
+   ![](./Images/E1T2-2S14.png)
 
-1. Check the flow of logic app
+1. Check the flow of the logic app.
 
-   ![](./Images/ETS1245.png)
+   ![](./Images/E1T2-2S15new.png)
 
    >**Note**: The manual step is the trigger that starts the Logic App when the lifecycle workflow sends a request. The HTTP action processes the request and marks the task as completed, and the Send an email (V2) step sends a notification to the user and manager.
 
-1. Now go to **Identity (1)** and make the status **On (2)** then click on **Save(3)**.
+1. Navigate to the **Identity (1)** option under **Settings** and switch the toggle to **On (2)** then click on **Save(3)**.
 
-   ![](./Images/ETS1230.png)
+   ![](./Images/E1T2-2S16new.png)
 
-1. In the Microsoft Entra admin center, expand **ID Governance (1)** in the left navigation pane and select **Lifecycle workflows (2)**.
+1. On the Enable system assigned managed identity pop-up, select **Yes** to enable to managed identity.
 
-1. Select **Workflows (3)**, then click on **Onboard New Employee - IT Department (4)**.
+   ![](./Images/E1T2-2S17.png)
 
-   ![](./Images/ETS1220.png)
+1. Navigate to **Lifecycle workflows (1)** in the left navigation pane under ID Governance, select **Workflows (2)** and then **Onboard New Employee - IT Department (3)**.
 
-1. Click **Tasks (1)** in the workflow menu and then click **+ Add task (2)**.
+   ![](./Images/E1T2-2S18.png)
 
-   ![](./Images/ETS1246.png)
+1. Select **Tasks (1)** under Manage and then click on **+ Add task (2)**.
 
-1. Select **Run a Custom Task Extension (1)** from the task list and click on **Save (2)**.
+   ![](./Images/E1T2-2S19.png)
 
-   ![](./Images/ETS1247.png)
+1. From the list, select **Run a Custom Task Extension (1)** and click on **Add (2)**.
 
-1. Click on **Run a Custom Task Extension (1)** , Select custom extension as **Onboarding email notification (2)** then click on **Save(3)**.
+   ![](./Images/E1T2-2S20.png)
 
-   ![](./Images/ETS1248.png)
+1. Click on **Run a Custom Task Extension (1)**, select custom extension as **Onboarding email notification (2)** then click on **Save(3)**.
 
-1. Then Click **Save**.
+   ![](./Images/E1T2-2S21.png)
 
-   ![](./Images/ETS1249.png)
+1. Then, click **Save**.
 
-1. Before running the Lifecysle workflow, you need to updated few properties of the user.
+   ![](./Images/E1T2-2S22new.png)
 
-1. Navigate to **Users (1)** under Entra ID and click on **ADUser3 (2)**.
+1. Before running the Lifecysle workflow, you need to update few properties of the user. Navigate to **Users (1)** under Entra ID and click on **AD User3 (2)**.
 
-   ![](./Images/ETS1250.png)
+   ![](./Images/E1T2-2S22-1.png)
 
 1. Click **Edit properties**.
 
-   ![](./Images/ETS1274.png)
+   ![](./Images/E1T2-2S23.png)
 
 1. Select **All** then scroll down and set the following attributes and then click on **Save (4)**
 
    - **Employee Hire date**: Select today's date **(1)**
-   - **Manager**: <inject key="AzureEmail"></inject> **(2)**
-   - **Email**:<inject key="AzureAdUser3Email"></inject> **(3)**
+   - **Manager**: Click on **+Add manager** and select <inject key="AzureAdUserEmail"></inject>**(2)**
+   - **Email**: Go to Environment tab and copy **User 03 UPN (3)**
 
-    ![](./Images/ETS1276.png)
-    ![](./Images/ETS1277.png)
+      ![](./Images/E1T2-2S25.png)
 
-1. Now expand **ID Governance (1)** in the left navigation pane and select **Lifecycle workflows (2)**. Select **Workflows (3)**, then click on **Onboard New Employee - IT Department (4)**.
+1. Navigate to **Lifecycle workflows (1)** under ID Goverenance, select **Workflows (2)**, then click on **Onboard New Employee - IT Department (3)**.
 
-   ![](./Images/ETS1220.png)
+   ![](./Images/E1T2-2S18.png)
 
-1. Go to **Overview (1)** and select **Run on demand (2)**. 
+1. Select **Run on demand** under Overview. 
 
-   ![](./Images/ETS1225.png)
+   ![](./Images/E1T2-2S27.png)
 
-1. Click on **+ Select user (1)** then select the **ADUser3 (2)** and click on **Select (3)**.
+1. Click on **+ Select users (1)** then, select the **AD User3 (2)** and click on **Select (3)**.
 
-   ![](./Images/ETS1226.png)
+   ![](./Images/E1T2-2S28.png)
 
 1. Click **Run workflow**.
 
-   ![](./Images/ETS1227.png)
+   ![](./Images/E1T2-2S29.png)
 
-1. Refresh it and after few minutes,. click on **ADUser3** and check each task shows a **Completed** status.
+1. Click on **Refresh** to get the summary. Then, click on **AD User3**.
 
-   ![](./Images/ETS1273.png)
+   ![](./Images/E1T2-2S30.png)
 
-1. Navigate to **Users (1)** under Entra ID and click on **ADUser3 (2)**.
+1.  Notice that each task shows a status as **Completed**.
 
-   ![](./Images/ETS1250.png)
+      ![](./Images/E1T2-2S31.png)
 
-1. Now click on **Group** to check the user has been assigned to the group **Newjoiner** and also check **license** that has been assigned to the user.
+1. Navigate to **Users (1)** under Entra ID and click on **AD User3 (2)**.
 
-   ![](./Images/ETS1271.png)
-   ![](./Images/ETS1272.png)
+   ![](./Images/E1T2-2S22-1.png)
 
-1. Open a new tab and navigate to outlook using below link
+1. Now click on **Group** to check the user has been assigned to the group **Newjoiner** and navigate back to users and check that **license** that has been assigned to the user.
+
+   ![](./Images/E1T2-2S33.png)
+   
+   ![](./Images/E1T2-2S33-1.png)
+
+1. Open a new tab and navigate to outlook using below link.
 
    ```
    https://outlook.office.com/
@@ -537,16 +576,9 @@ In this task, you will create a custom task extension using a Logic App. This ex
 
    - **Password:** <inject key="AzureAdUserPassword"></inject>
 
-   ![](./Images/ETS1232.png)
-
-1. Navigate back to **Microsoft entra admin portal** and select **users** under Entra ID and click on **ADUser3**.
+1. After login, check that the email has recieved in Inbox.
 
    ![](./Images/ETS1232.png)
-
-1. Now click on **Group** to check the user has been assigned to the group **Newjoiner** and also check **license** that has been assigned to the user.
-
-   ![](./Images/ETS1271.png)
-   ![](./Images/ETS1272.png)
 
 ### Task 2.3: Configure Offboarding Workflow
 
@@ -554,59 +586,68 @@ In this task, you will configure a lifecycle workflow to handle employee offboar
 
 1. In the Microsoft Entra admin center, expand **ID Governance (1)** in the left navigation pane and select **Lifecycle workflows (2)**. Then click on **+ Create workflow (3)**
 
-   ![](./Images/ETS121.png)
+   ![](./Images/E1T2-1S1.png)
 
 1. Scroll down and select the **Offboard an employee** template under the **Leaver** category.
 
-   ![](./Images/ETS1251.png)
+   ![](./Images/E1T2-3S2new.png)
 
-1. On the **Basics** page, leave it as default and click **Next: Configure**.
+1. On the **Basics** page, leave it as default and click **Next: Configure scope >**.
 
-   ![](./Images/ETS1252.png)
+   ![](./Images/E1T2-3S3.png)
 
-1. On the **Configure** page, Make the rule department value as **IT (1)** then click **Next: Review tasks (2)**.
+1. On the **Configure** page, make the rule department value as **IT (1)** then click **Next: Review tasks > (2)**.
 
-   ![](./Images/ETS1253.png)
+   ![](./Images/E1T2-3S4.png)
 
 1. On the **Review tasks** page, you will see pre-configured tasks. Click **+ Add task (1)** to add additional tasks.
 
-1. Select **Remove all licenses for user  (2)** then click on **Add (3)** and click **Next: Review tasks (4)**.
+   ![](./Images/E1T2-3S5.png)
 
-   ![](./Images/ETS1254.png)
+1. Select **Remove all licenses for user  (2)** then click on **Add (3)**.
 
- Review the order of tasks. Drag tasks to reorder them if needed. Recommended order:
+   ![](./Images/E1T2-3S6.png)   
+
+1. Review the order of tasks. Drag tasks to reorder them if needed. Recommended order is mentioned below **(1)**. Click on **Review + Create (2)**
+
    1. Disable user account
    2. Remove user from all groups
    3. Remove user from all Teams
    4. Remove all licenses for user
 
+      ![](./Images/E1T2-3S7.png)  
+
 1. Click **Create**.
 
-   ![](./Images/ETS1255.png)
+   ![](./Images/E1T2-3S8.png)
 
 1. Now select **Offboard an employee** and click on **Run on demand**.
 
-   ![](./Images/ETS1256.png)
+   ![](./Images/E1T2-3S9.png)
 
-1. Click on **+ Select users (1)** then select **ADUser3 (2)** and click **Select (3)**.
+1. Click on **+ Select users (1)** then select **AD User3 (2)** and click **Select (3)**.
 
-   ![](./Images/ETS1257.png)
+   ![](./Images/E1T2-3S10.png)
 
 1. Now click on **Run workflow**.
 
-   ![](./Images/ETS1258.png)
+   ![](./Images/E1T2-3S11.png)
 
-1. Refresh it and after few minutes,. click on **ADUser3** and check each task shows a **Completed** status.
+1. To get the summary click on **Refresh** then, select **AD User3**.
 
-   ![](./Images/ETS1278.png)
+   ![](./Images/E1T2-3S12.png)
 
-1. Navigate to **Users (1)** under Entra ID and click on **ADUser3 (2)**.
+1. On the pop-up ntice that each task shows a status as **Completed**. Click on cancel. 
 
-   ![](./Images/ETS1250.png)
+   ![](./Images/E1T2-3S13.png)
+
+1. Navigate to **Users (1)** under Entra ID and click on **AD User3 (2)**.
+
+   ![](./Images/E1T2-2S22-1.png)
 
 1. Verify the **Groups Memberships (1)** and **License (2)** of the **ADUser3** has been revoked and account is **disabled (3)**.
 
-   ![](./Images/ETS1279.png)
+   ![](./Images/E1T2-3S15.png)
 
 ## Task 3: Setting Up Access Reviews
 
@@ -614,32 +655,32 @@ In this task, you will create and configure access reviews to regularly validate
 
 1. In the Microsoft Entra admin center, navigate to **ID Governance** and select **Access reviews** then click on **+ Access reviews**
 
-   ![](./Images/ETS1261.png)
+   ![](./Images/E1T3S1.png)
 
-1. Select **Review access to a resource type**
+1. Under **Review access to a resource type**, click on **Select**.
 
-   ![](./Images/ETS1262.png)
+   ![](./Images/E1T3S2.png)
 
 1. On the **Review type** page, provide the below details:
       - Select what to review :**Teams + Groups (1)**
       - Review scope : **Select Teams + groups (2)**
       - Group : click on **+ Select groups (3)**
 
-   ![](./Images/ETS1263.png)
+         ![](./Images/E1T3S3.png)
 
-1. Select **IT-Department (1)** and click on **Select (2)**.
+      -  Under Groups, select **IT-Department (4)** and then click on **Select (5)**.
 
-   ![](./Images/ETS1264.png)
+         ![](./Images/E1T3S3-1.png)
 
-1. Select **All users (1)** on the scope and click on **Next Reviews (2)**.
+1. Select **All users (1)** under scope and click on **Next Reviews (2)**.
 
-   ![](./Images/ETS1265.png)
+   ![](./Images/E1T3S4.png)
 
 1. In the select reviewers drop down, click on **Selected user(s) or group(s)**
 
    ![](./Images/ETS1266.png)
 
-1. Then click on **+ select reviwers (1)** and select **ODL_User <inject key="DeploymentID"></inject> (2)** then clcik on **select (3)**.
+1. Then click on **+ select reviwers (1)** and select **ODL_User <inject key="DeploymentID"></inject> (2)** then click on **select (3)**.
 
    ![](./Images/ETS1267.png)
 
@@ -691,62 +732,78 @@ In this task, you will create a Conditional Access policy to enforce multi-facto
 
 1. In the Entra Admin portal left pane, expand **ID Protection (1)** and select **Risk-based Conditional Access  (2)** then click on **+ New policy (3)**.
 
-   ![](./Images/ETS1411.png)
+   ![](./Images/E1T4S1.png)
 
 1. Configure the Conditional Access Policy with the following details:
 
       - Name: **Require MFA for IT Department - Cloud Apps** **(1)**
       - Click on **0 users or agents (Preview) selected** **(2)** under Users or agents (Preview) option.
-      - A new window will slide in, click on **Select users and Groups** **(3)** and then select the check box saying **Users and groups** **(4)**
-      - Now a Select window will open, here select **IT-Department** and then click on **Select** **(5)** button.
+
+         ![](./Images/E1T4S2-1.png)
+
+      - A new window will slide in, click on **Select users and Groups** **(1)** and then select the check box for **Users and groups** **(2)**.
+
+         ![](./Images/E1T4S2-2.png)
+
+      - Under Select users and groups, check the box for **IT-Department (1)** and then click on **Select (2)** button.
    
-         ![](./Images/ETS1412.png)
+         ![](./Images/E1T4S2-3.png)
    
       - Click on **No target resources selected** **(1)** under Target resources option.
+
+         ![](./Images/E1T4S2-4.png)
+
       - Click on **All resources (formally All cloud apps)** **(2)**
 
-         ![](./Images/ETS1413.png)
+         ![](./Images/E1T4S2-5.png)
 
-      - Click on **0 conditions selected** **(1)** under Conditions option.
-      - Then select **Device platforms** **(2)**
-      - Now in the Device platforms blade, toggle the *Configure* switch to **Yes** **(3)** and make sure that all the checkboxes below are selected.
-      - Then click on **Done** **(4)**
+      - Click on **0 conditions selected** **(1)** under Conditions option. Then select **Not configured (2)** under Device platforms.
+         
+         ![](./Images/E1T4S2-6.png)
 
-         ![](./Images/ETS1414.png)
+      - Now in the Device platforms blade, toggle the *Configure* switch to **Yes** **(1)** and make sure that **Any device (2)** option is selected. Then click on **Done** **(3)**
 
-      - Then select **Location** **(1)**
-      - Now in the Location blade, toggle the *Configure* switch to **Yes** **(2)** and select **Any network or location **(3)**.
+         ![](./Images/E1T4S2-7.png)
 
-         ![](./Images/ETS1415.png)
+      - Then select **Not configured (1)** under Locations.
+
+         ![](./Images/E1T4S2-8.png)
+
+      - Now in the Location blade, toggle the *Configure* switch to **Yes** **(1)** and select **Any network or location (2)**.
+
+         ![](./Images/E1T4S2-9.png)
   
-      - Then select **Client Apps** **(1)**
-      - Now in the Client Apps blade, toggle the *Configure* switch to **Yes** **(2)** and make sure that all the checkboxes below are selected.
-      - Then click on **Done** **(3)**.
+      - Select **Not configured (1)** under Client apps.
 
-         ![](./Images/ETS1416.png)
+         ![](./Images/E1T4S2-10.png)
+
+      - Now in the Client Apps blade, toggle the *Configure* switch to **Yes** **(1)** and make sure that all the checkboxes below are selected **(2)**. Then click on **Done** **(3)**.
+
+         ![](./Images/E1T4S2-11.png)
 
       - Click on **0 controls selected (1)** of `Grant` Section under the Access Control option.
-      - in the **Grant** pane, click on **Grant access**
-      - Select the check Box saying **Require multi-factor authentication** **(2)** 
-      - Then click on **Select** **(3)**
 
-         ![](./Images/ETS1417.png)
+         ![](./Images/E1T4S2-12.png)
+
+      - Under **Grant** pane, click on **Grant access (1)** then, select the check Box for **Require multi-factor authentication** **(2)**. Click on **Select** **(3)**. 
+
+         ![](./Images/E1T4S2-13.png)
    
       - Toggle the **Enable Policy** switch to **On (1)** and click on **Create (2)**.
 
-        ![](./Images/ETS1418.png)
+        ![](./Images/E1T4S2-14.png)
 
-1. Open an **Incognito browser**, paste the provided link, and log in using below **credentials**.
+1. Open a **New InPrivate window**, paste the provided link, and log in using below **credentials**.
 
       ```
       portal.azure.com
       ```
 
-   - Username: Paste the username  **<inject key="ADUser1 Email"></inject>** then click on **Next**.
+   - **Username:** Paste the username **<inject key="User 01 UPN"></inject>**
 
       ![](./Images/ETS1419.png)   
 
-   - Password:  Paste the password **<inject key="ADUser Password"></inject> (1)** and click on **Sign in (2)**.
+   - **Password:** Paste the password **<inject key="User's Password"></inject> (1)** and click on **Sign in (2)**
 
       ![](./Images/ETS1420.png)   
 
@@ -779,7 +836,7 @@ In this task, you will create a Conditional Access policy to enforce multi-facto
 
      - Scan the QR code visible on the screen **(1)** and click on **Next (2)**.
 
-       ![](./Images/ETS1425.png)   
+       ![](./Images/QR.png)   
 
      - Enter the digit displayed on the Screen in the Authenticator app on your mobile and tap on **Yes**.
 
@@ -789,41 +846,35 @@ In this task, you will create a Conditional Access policy to enforce multi-facto
 
      - Click on **Done**.
 
-       ![](./Images/ETS1427.png)        
+       ![](./Images/Done.png)        
 
 1. If prompted to stay signed in, you can click **"No"**.
 
 1. Tap on **Finish** in the Mobile Device.
 
-   > NOTE: While logging in again, enter the digits displayed on the screen in the **Authenticator app** and click on Yes.
+   >NOTE: While logging in again, enter the digits displayed on the screen in the **Authenticator app** and click on Yes.
 
-1. Return to the Microsoft Entra admin center and navigate to **Entra ID** > **Monitoring & health** > **Sign-in logs**.
+1. Return to the Microsoft Entra admin center and navigate to **Entra ID** > **Monitoring & health (1)** > **Sign-in logs (2)**. Verify the recent User sign-ins **(3)**.
 
-1. Verify the recent sign-ins
-
-   ![](./Images/ETS1428.png)
+   ![](./Images/E1T4S8.png)
 
 ## Task 5: Monitoring and Auditing with Entra ID (Optional/Read Only)
 
 In this task, you will explore audit logs, sign-in logs, and reporting dashboards to monitor identity activities. This helps in gaining visibility into governance operations and improving security posture.
 
-1. In the Microsoft Entra admin center, navigate to **Entra ID** > **Monitoring & health** > **Audit logs**.
+1. In the Microsoft Entra admin center, navigate to **Entra ID** > **Monitoring & health** > **Audit logs**. Review the Audit logs activity across the tenant.
 
-1. Review the Audit logs activity across your tenant.
+   ![](./Images/E1T5S1.png)
 
-   ![](./Images/ETS1511.png)
+1. Navigate to **Sign-in logs**. Review the sign-in activity across the tenant.
 
-1. Navigate to **Sign-in logs**.
+   ![](./Images/E1T5S2.png)
 
-1. Review the sign-in activity across your tenant.
-
-   ![](./Images/ETS1512.png)
-
-1. Apply filters to find interesting 
+1. You can also add filters to find more details. 
 
 1. Navigate to **Home** to see the tenant summary dashboard.
 
-   ![](./Images/ETS1513.png)
+   ![](./Images/E1T5S4.png)
 
 ## Summary
 
