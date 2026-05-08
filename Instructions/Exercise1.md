@@ -37,9 +37,11 @@ In this task, you will create dynamic groups based on user attributes and define
 
 1. If prompted, provide the credentials below:
 
-   - **Email/Username:** <inject key="azureUserName"></inject>
+   - **Email/Username:** <inject key="AzureAdUserEmail"></inject>
 
-   - **Password:** <inject key="AzureUserPassword"></inject>
+   - **Password:** <inject key="AzureAdUserPassword"></inject>
+
+   >**Note:** If pop-up appears asking about Give feedback to Microsoft, close it. 
 
 1. Take a moment to familiarize yourself with Microsoft Entra admin center.
 
@@ -90,7 +92,7 @@ In this task, you will create dynamic groups based on user attributes and define
 
    ![](./Images/ETS1110.png)
 
-1. In the **Dynamic membership rules** page, click on **Edit (1)** then configure the following rules **(2)** and click on **Save (3)**.
+1. In the **Dynamic membership rules** page, click on **Edit (1)** under **Rule syntax**, put the below mentioned rule **(2)** then click on **Ok** and **Save (3)**.
    ```
    (user.jobTitle -contains "Manager")
    ```
@@ -100,41 +102,46 @@ In this task, you will create dynamic groups based on user attributes and define
 
    ![](./Images/ETS1112.png)
 
-1. In the left pane, go to **Users**, click on **ADUser1** to open the profile.
+1. In the left pane, go to **Users (1)**, click on **AD User1 (2)** to open the profile.
 
-   ![](./Images/ETS1113.png)
+   ![](./Images/E1T1S14.png)
 
 1. Click **Edit properties**.
 
-   ![](./Images/ETS1114.png)
+   ![](./Images/E1T1S15.png)
 
 1. Select **Job Information (1)** and set the following attributes and then click on **Save (4)**
 
    - **Job title**: `IT Manager` **(2)**
    - **Department**: `IT` **(3)**
 
-   ![](./Images/ETS1115.png)
+      ![](./Images/E1T1S16.png)
 
 1. Navigate back to **Groups (1)**, select **All groups (2)** and Click on **IT-Department (3)**.
 
    ![](./Images/ETS1116.png)
 
-1. Select **Members**, verify that **ADUser1** now added to the group dynamically.
+1. Select **Members**, verify that **AD User1** is now added to the group dynamically. Click **Cancel**.
 
-   ![](./Images/ETS1117.png)
+   ![](./Images/E1T1S18.png)
+
    >**Note:** If user is not appeared then wait a few minutes and then click Refresh.
 
-1. Check for **Managers** group to confirm the `ADUser1` added as a member in the group.
+1. From the list, select **Managers** group. Select **Members**, verify that **AD User1** is added as a member in the group.
 
-   ![](./Images/ETS1118.png)
+   ![](./Images/E1T1S19.png)
 
-1. You can also validate the users by using **Validate rules**.
+1. You can also validate the users by using **Validate rules**. Click on **Dynamic membership rules (1)** under **Manage**, select **Validate rules (2)** and then **+ Add users (3)**.
 
-1. Click on **Dynamic membership rules (1)** and select **Validate rules (2)**.
+   ![](./Images/E1T1S20.png)
 
-1. Click on **+ Add user (3)**, select **ADUser2 (4)** and check the **validation (5)** details.
+1. From the list, select **AD User2 (1)** and click on **Select (2)**. Once the user is selected, the user **(3)** will appear under the **Validate Rules** section. To verify the status, click on **View details (4)**.
 
-   ![](./Images/ETS1119.png)
+   ![](./Images/E1T1S21.png)
+
+   ![](./Images/E1T1S21-1.png)
+
+   ![](./Images/E1T1S21-2.png)
 
 ## Task 2: Entra ID Lifecycle Management
 
@@ -146,62 +153,65 @@ In this task, you will set up a lifecycle workflow to automate the onboarding pr
 
 1. In the Microsoft Entra admin center, expand **ID Governance (1)** in the left navigation pane and select **Lifecycle workflows (2)**. Then click on **+ Create workflow (3)**
 
-   ![](./Images/ETS121.png)
+   ![](./Images/E1T2-1S1.png)
 
-1. You will see the Lifecycle Workflows dashboard with template categories: **Joiner**, **Mover**, and **Leaver**. Select **Onboard new hire employee**.
+1. You will see the Lifecycle Workflows dashboard with template categories: **Joiner**, **Mover**, and **Leaver**. Locate **Onboard new hire employee** and click on **Select** under it.
 
-   ![](./Images/ETS122.png)
+   ![](./Images/E1T2-1S2.png)
 
-1. On the **Basics** page, provide Name as **Onboard New Employee - IT Department (1)**. and then click **Next: Configure (2)**.
+1. On the **Basics** page, provide Name as **Onboard New Employee - IT Department (1)** and then click **Next: Configure (2)**.
 
-   ![](./Images/ETS122-1.png)
+   ![](./Images/E1T2-1S3.png)
 
 1. On the **Configure** page, Make the rule department value as **IT (1)** then click **Next: Review tasks (2)**.
 
-   ![](./Images/ETS123.png)
+   ![](./Images/E1T2-1S4.png)
 
-1. On the **Review tasks** page, you will see pre-configured tasks. Click **+ Add task (1)** to add additional tasks.
+1. On the **Review tasks** page, you will see pre-configured tasks. Click **+ Add task** to add additional tasks.
 
-1. Select **Generate TAP and send email (2)** and **Add license to User (3)** then click on **Add (4)**.
+   ![](./Images/E1T2-1S5.png)
 
-   ![](./Images/ETS1241.png)
+1. Select **Generate TAP and send email (1)** and **Add license to User (2)** then click on **Add (3)**.
+
+   ![](./Images/E1T2-1S6.png)
 
 1. Click on **Add license to User (1)** then click on **0 license selected (2)**
 
-   ![](./Images/ETS1242.png)
+   ![](./Images/E1T2-1S7.png)
 
-1. Select **Office 365 E1 (1)** then clcik on **select (2)**.
+1. Select **Office_365_E1_(no_Teams) (1)** then clcik on **Select (2)**.
 
-   ![](./Images/ETS1243.png)
+   ![](./Images/E1T2-1S8.png)
 
 1. Click on **Save**.
 
-   ![](./Images/ETS1244.png)
+   ![](./Images/E1T2-1S9.png)
 
 1. Now click on **Add user to group (1)** then click on **0 group selected (2)**
 
-   ![](./Images/ETS125.png)
+   ![](./Images/E1T2-1S10.png)
 
 1. Select **New joiners (1)** group and the click on **Select (2)**
 
-   ![](./Images/ETS126.png)
+   ![](./Images/E1T2-1S11.png)
 
 1. Click on **Save (1)**.
 
-1.  Review the order of tasks. Drag tasks to reorder them if needed. Recommended order:
+   ![](./Images/E1T2-1S12.png)
+
+1.  Review the order of tasks. Drag tasks to reorder them if needed. Recommended order is mentioned below **(1)**. Click **Review + create (2)**.
+
       - Enable user account
       - Send welcome email
       - Add user to groups
       - Generate TAP and send Email
       - Assign license to User
 
-1. Click **Next: Review + create (2)**.
-
-   ![](./Images/ETS127.png)
+   ![](./Images/E1T2-1S13.png)
 
 1. Review the workflow configuration summary and click **Create**.
 
-   ![](./Images/ETS128.png)
+   ![](./Images/E1T2-1S14.png)
 
 ### Task 2.2: Implement Custom Extensions
 
