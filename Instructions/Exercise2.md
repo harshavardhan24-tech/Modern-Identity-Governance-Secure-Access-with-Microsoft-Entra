@@ -43,13 +43,6 @@ In this task, you will activate Microsoft Entra Global Secure Access in your ten
 
    ![](./Images/ETS2102.png)
 
-1. In the Microsoft Entra admin center, navigate to **Connect (1)** and click on **Client download (2)**.
-
-1. Click on **Download client (3)** to download the **Global Secure Access client** installer for your endpoint OS.
-
-   ![](./Images/ETS2103.png)
-   >**Note**: Global Secure Access client software will be installed in the next exercise on the endpoint device
-
 ## Task 2: Configure Entra Private Access
 
 In this task, you will configure Microsoft Entra Private Access by enabling traffic forwarding and deploying a Private Access connector. You will create an application segment and assign users to securely access internal resources. Finally, you will validate connectivity by accessing a private resource (RDP) through the Global Secure Access client without using a traditional VPN.
@@ -81,11 +74,11 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
 
 1. While installing, it will prompt to sign in. Provide the below credentials:
 
-   - Username: Paste the username  **<inject key="ADUser1 Email"></inject>** then click on **Next**.
+   - Username: Paste the username  ** <inject key="AzureAdUserEmail"></inject> in the **Sign in** field. Click **Next** to continue.
 
       ![](./Images/ETS2110.png)   
 
-   - Password:  Paste the password **<inject key="ADUser Password"></inject> (1)** and click on **Sign in (2)**.
+   - Password:  Paste the password <inject key="AzureAdUserPassword"></inject> **(1)** and click **Sign in (2)**
 
       ![](./Images/ETS2112.png)  
 
@@ -93,33 +86,33 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
 
    ![](./Images/ETS2113.png) 
 
-1. Navigate to **Microsoft Entra admin portal** and check the **Connectors** status as active
+1. Navigate to **Microsoft Entra admin portal** and check the **Connectors** status as **Active**.
 
    ![](./Images/ETS2114.png) 
-   >**Note**: If the connector is not appeared, refresh the browser and check again
 
-1. Navigate to **Applications (1)** then select **Quick actions (2)**.
+   >**Note**: If the connector is not appeared, refresh the browser and check again.
 
-1. Provide the Name as **Quick Access (3)** and click on **+ Add Quick Access application segment (4)**
+1. Navigate to **Applications (1)** then select **Quick Access (2)**. Provide the Name as **Quick actions (3)** and click on **+ Add Quick Access application segment (4)**.
 
    ![](./Images/ETS2115.png) 
 
 1. Provide the below details and click **Apply (5)** to add the segment.
 
    - **Destination type**: IP address **(1)**
-   - **IP address**:`10.0.0.1/24` **(2)**
+   - **IP address**: `10.0.0.1/24` **(2)**
    - **Ports**: `3389`  **(3)**
    - **Protocol**: TCP **(4)**
 
-   ![](./Images/ETS2116.png) 
+      ![](./Images/ETS2116.png) 
 
 1. Click **Save** to create the Quick Access application segment.
 
    ![](./Images/ETS2117.png)
 
-1. Navigate to **Users and groups (1)** and click **+ Add user/group (2)**.
+1. Navigate to **Quick Acces (1)** under Applications, select **Users and groups (2)** and click **+ Add user/group (3)**.
 
    ![](./Images/ETS2118.png)
+
    >**Note**: If you could not find users and groups option, click on **Quick access** again in the left pane to get the option.
 
 1. Click on **None selected (1)** then select **IT-Department (2)** and click on **select**
@@ -130,18 +123,18 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
 
    ![](./Images/ETS2120.png)
 
-1. Now, in your desktop **Start** menu, search for **RDP (1)** and select **Remote Connection Desktop (2)**.
+1. Now, in your desktop **Start** menu, search for **rdp (1)** and select **Remote Connection Desktop (2)**.
 
    ![](./Images/ETS2121.png)
 
-1. Provide Computer Name as <inject key="ClientDNSname"></inject> then click on **Connect**.
+1. Provide Computer Name as <inject key="ClientVM DNS Name"></inject> then click on **Connect**.
 
    ![](./Images/ETS2122.png)
 
 1. Now click on **More choices (1)** then select **Use different account (2)**. Provide the below credentials and click on **Ok (5)**.
 
-      - Username :  .\ <inject key="adminUsername"></inject> **(3)**
-      - Password :  <inject key="Password"></inject> **(4)**
+      - Username :  .\ <inject key="ClientVM Admin Username"></inject> **(3)**
+      - Password :  <inject key="ClientVM Admin Password"></inject> **(4)**
 
       ![](./Images/ETS2123.png)
 
@@ -153,25 +146,17 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
    
    ![](./Images/ETS2125.png) 
 
-1. Accept the license agreement **(1)** and click on **Install **(1)**.
-   
-   ![](./Images/ETS2126.png) 
-
-1. Once the installation is completed, click on **Close**.
-
-   ![](./Images/EST2127.png)
-
-1. Wait for a minute to open the Global Secure Access Client then click on **Sign in**.
+1. On the Global Secure Access Client, click on **Sign in**.
 
    ![](./Images/ETS2129.png)
 
 1. If prompted sign in with the below credentials.
 
-   - Username: Paste the username  **<inject key="ADUser1 Email"></inject>** then click on **Next**.
+   - **Username:** Paste the username  **<inject key="User 01 UPN"></inject>** then click on **Next**.
 
       ![](./Images/ETS1419.png)   
 
-   - Password:  Paste the password **<inject key="ADUser Password"></inject> (1)** and click on **Sign in (2)**.
+   - **Password:**  Paste the password **<inject key="User's Password"></inject> (1)** and click on **Sign in (2)**.
 
       ![](./Images/ETS1420.png)
 

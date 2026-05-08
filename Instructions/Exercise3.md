@@ -44,10 +44,11 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 1. Provide the below details and click on **Select keys (3)** for Key vault selection.
 
    - **Organization**: VerifiedID **(1)**
-   - **Trusted domain**: <inject key="Trusteddomain"></inject> **(2)**
+   - **Trusted domain**: Open the Azurecreds file located on Desktop and copy **(1)** and paste the endpoint **(2)**.
+
       ![](./Images/ETS3102.png)
 
-1. Leave the Subscription as **default (1)**. From the Key vault dropdown, select **AKV-<inject key="DeploymentID"></inject> (2)** and click on **Select (3)**.
+1. Leave the Subscription as **default (1)**. From the Key vault dropdown, select **kv-<inject key="DeploymentID"></inject> (2)** and click on **Select (3)**.
 
    ![](./Images/ETS3103.png)
 
@@ -69,10 +70,11 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
    portal.azure.com
    ```
 
-   - Username: Paste the username  **<inject key="AzureUserEmail"></inject>** then click on **Next**.
+   - Username: Paste the username  **<inject key="AzureAdUserEmail"></inject>** then click on **Next**.
       ![](./Images/ETS3107.png)
 
-   - Password:  Paste the password **<inject key="AzureUserEmail"></inject> (1)** and click on **Sign in (2)**.
+   - Password:  Paste the password **<inject key="AzureAdUserPassword"></inject> (1)** and click on **Sign in (2)**.
+
       ![](./Images/ETS3108.png)
 
    >**Note:** If there's a dialog box saying **Stay signed in**, then select the **No** option.
@@ -83,7 +85,7 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 
    ![](./Images/ETS3109.png)
 
-1. Select **verifiedid<inject key="DeploymentID"></inject>** storage account.
+1. Select **stweb<inject key="DeploymentID" enableCopy="false" />** storage account.
 
    ![](./Images/ETS3110.png)
 
@@ -100,7 +102,7 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 
    ![](./Images/ETS3114.png)
 
-1. Click on **Desktop (1)** and select **did.json (2)** then click on **Open (3)**.
+1. Click on **Downloads (1)** and select **did.json (2)** then click on **Open (3)**.
 
    ![](./Images/ETS3115.png)
 
@@ -108,7 +110,7 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 
    ![](./Images/ETS3116.png)
 
-1. Now, naviagte back to Microsoft Entra admin center, and click on **Refresh registration status (1)**. If the registration is successful **(2)**, click on **Close (3)**.
+1. Now, naviagte back to Microsoft Entra admin center, and click on **Refresh registration status (1)**. Once the status is **Verified (2)**, click on **Close (3)**.
 
    ![](./Images/ETS3117.png)
 
@@ -124,7 +126,7 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 
    ![](./Images/ETS3120.png)
 
-1. Click on **Desktop (1)** and select **did-configuration.json (2)** then click on **Open (3)**.
+1. Click on **Downloads (1)** and select **did-configuration.json (2)** then click on **Open (3)**.
 
    ![](./Images/ETS3122.png)
 
@@ -132,7 +134,7 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 
    ![](./Images/ETS3123.png)
 
-1. Now, naviagte back to Microsoft Entra admin center, and click on **Refresh registration status (1)**. If the registration is successful **(2)**, click on **Close (3)**.
+1. Now, naviagte back to Microsoft Entra admin center, and click on **Refresh registration status (1)**. Once the status is **Verified (2)**, click on **Close (3)**.
 
    ![](./Images/ETS3124.png)
 
@@ -142,7 +144,7 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
    >**Note**: if it is still showing **Domain may not be verified**, click on **Verify**,click on **Refresh registration status**. If the registration is successful, click on **Close** and check again.
    ![](./Images/ETS3126.png)
 
-1. Now, click on **+ Add credential** to create a new credential type.
+1. Now, click on **+ Create credential** to create a new credential type.
 
    ![](./Images/ETS3127.png)
 
@@ -166,11 +168,9 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 
 In this task, you will configure the credential issuance process and issue a verifiable credential to a test user who will receive it in their Microsoft Authenticator app.
 
-1. Now on the **Verified employee** page, click on **Issue a credential**.
+1. Navigate to **Verified employee** page, click on **Issue a credential**. Ensure **Allow all Microsoft Entra ID users within the tenant (1)** is selected and check the box **Issue credentials through My Account (2)**.
 
    ![](./Images/ETS3131.png)
-
-1. Ensure **Allow all Microsoft Entra ID users within the tenant (1)** is selected and check the box **Issue credentials through My Account (2)**.
 
    ![](./Images/ETS3132.png)
 
@@ -178,7 +178,7 @@ In this task, you will configure the credential issuance process and issue a ver
 
    ![](./Images/ETS3133.png)
 
-1. Now click on **Overview (1)** under Verified ID and click on **Try it now (2)** under Get the new credentials.
+1. Navigate to  **Overview (1)** under Verified ID and click on **Try it now (2)** under Get the new credentials.
 
    ![](./Images/ETS3134.png)
 
@@ -191,7 +191,7 @@ In this task, you will configure the credential issuance process and issue a ver
 
    ![](./Images/ETS3137.png)
 
-1. Now navigate back to Microsoft Entra admin center. on the Overview page of Verified ID, click on **Try it now** under use your credentials.
+1. Now navigate back to Microsoft Entra admin center. On the **Overview** page of Verified ID, click on **Try it now** under use your credentials.
 
    ![](./Images/ETS3135.png)
 
@@ -209,6 +209,9 @@ In this task, you will configure the credential issuance process and issue a ver
 
    ![](./Images/ETS3140.png)
 
+1. Navigate back to Entra admin portal, then Credenitals under Verified ID. Select Verified employee. 
+
+1. Copy the Manifesh URL and paste it in notepad.
 ## Task 3: Verify Credentials in Sample Application (Help Desk Scenario)
 
 In this task, you will simulate a real-world help desk identity verification scenario using Microsoft Entra Verified ID. Instead of traditional methods like passwords or security questions, the user will present a verified credential to securely prove their identity.
@@ -218,6 +221,25 @@ In this task, you will simulate a real-world help desk identity verification sce
 1. Now navigate back to Microsoft Entra admin center. click on **Organization setting** under Verified ID and copy the **DID Authority** and paste it in the notepad.
 
    ![](./Images/ETS3201.png)
+
+1. Navgate back to Azure portal, go to Micorosft Entra ID, then App registrations, select All application. Select an application named as `https://odl_user_sp_<inject key="DeploymentID" enableCopy="false" />`.
+
+1. From the Overview page, copy the Application (client ID) and Directory (tenant ID), paste it in the notepad.
+
+1. Navigate to Certificated & secrets, we will need to create a new secret for authentication purpose. Click on + New client secret under Client secrets (1). Provide the below details and select Add.
+
+   - Description: authentication
+   - Expires: Keep it default
+
+1. Once created, make sure the copy the Value and paste it in notepad, you will need it while deploying a web app in further steps.
+
+1. Go to API permissions, select Add a permission. Click on APIs my organization uses on Request API permissions page, then select Verifiable Credentials Service Request. 
+
+1. Select Application permissions, then check the box for VerifiableCredential.Create.All and click on Add permissions.
+
+1. On the Configured permissions page, select Grant admin consent for.. and then on the pop-up click on Yes.
+
+
 
 1. Open a new tab and Paste the below link to deploy a helpdesk app using App services in Azure portal.
 
@@ -239,7 +261,7 @@ In this task, you will simulate a real-world help desk identity verification sce
 
    - **Subscription**: Leave it as default **(1)**
    - **Resource group**: ODL-<inject key="DeploymentID"></inject> **(2)**
-   - **Webapp name**: Appservices<inject key="DeploymentID"></inject> **(3)**
+   - **Webapp name**: HelpDesk<inject key="DeploymentID"></inject> **(3)**
    - **DID Authority**: Paste DID Authority (copied in task 3 step) **(4)**.
 
    ![](./Images/ETS3202.png)

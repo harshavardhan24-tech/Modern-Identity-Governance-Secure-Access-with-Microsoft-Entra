@@ -713,12 +713,12 @@ In this task, you will create and configure access reviews to regularly validate
 
 1. It will navigate to my access portal.
 
-1. Now select **ADUser1** and click on **Deny**. Optionally, provide a justification in the **Reason** field and **Sumbit**.
+1. Now select **ADUser 1** and click on **Deny**. Optionally, provide a justification in the **Reason** field and **Sumbit**.
 
    ![](./Images/ETS1312.png)
    ![](./Images/ETS1313.png)
 
-1. Navigate back to Entra admin portal and select **Access review**
+1. Navigate back to Entra admin portal and select **Access review** under ID Governance. 
 
    ![](./Images/ETS1314.png)
 
