@@ -39,30 +39,30 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 
 1. On the Microsoft Entra admin center left navigation pane, expand **Verified ID** and click **Overview (1)** then click on **Configure (2)**.
 
-   ![](./Images/ETS3101.png)
+   ![](./Images/E3T1S1.png)
 
 1. Provide the below details and click on **Select keys (3)** for Key vault selection.
 
    - **Organization**: VerifiedID **(1)**
    - **Trusted domain**: Open the Azurecreds file located on Desktop and copy **(1)** and paste the endpoint **(2)**.
 
-      ![](./Images/ETS3102.png)
+      ![](./Images/E3T1S2.png)
 
 1. Leave the Subscription as **default (1)**. From the Key vault dropdown, select **kv-<inject key="DeploymentID"></inject> (2)** and click on **Select (3)**.
 
-   ![](./Images/ETS3103.png)
+   ![](./Images/E3T1S3.png)
 
 1. Click on **Save**
 
-   ![](./Images/ETS3104.png)
+   ![](./Images/E3T1S4.png)
 
 1. Now on the overview page, Click on **Register** under the Register decentralized ID.
 
-   ![](./Images/ETS3105.png)
+   ![](./Images/E3T1S5.png)
 
-1. Click on **Download (1)** then select the file location as **Desktop (2)** and click on **Save (3)**
+1. Click on **Download (1)**.
 
-   ![](./Images/ETS3106.png)
+   ![](./Images/E3T1S6.png)
 
 1. Open a new tab, paste the provided link, and log in into Azure portal using below **credentials**.
 
@@ -70,16 +70,15 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
    portal.azure.com
    ```
 
-   - Username: Paste the username  **<inject key="AzureAdUserEmail"></inject>** then click on **Next**.
-      ![](./Images/ETS3107.png)
+   - **Username:** Paste the username  **<inject key="AzureAdUserEmail"></inject>** then click on **Next**.
 
-   - Password:  Paste the password **<inject key="AzureAdUserPassword"></inject> (1)** and click on **Sign in (2)**.
+      ![](./Images/GS6.png)
 
-      ![](./Images/ETS3108.png)
+   - **Password:**  Paste the password **<inject key="AzureAdUserPassword"></inject> (1)** and click on **Sign in (2)**.
 
-   >**Note:** If there's a dialog box saying **Stay signed in**, then select the **No** option.
+      ![](./Images/GS6-1.png)
 
-      ![](./Images/ETS1421.png)   
+   >**Note:** If there's a dialog box saying **Stay signed in**, then select the **No** option.  
 
 1. Search for **storage account (1)** and select  **Storage accounts (2)**.
 
@@ -87,70 +86,72 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
 
 1. Select **stweb<inject key="DeploymentID" enableCopy="false" />** storage account.
 
-   ![](./Images/ETS3110.png)
+   ![](./Images/E3T1S9.png)
 
 1. Go to **Containers (1)** under Data storage and select **$web (2)**.
 
-   ![](./Images/ETS3111.png)
+   ![](./Images/E3T1S10.png)
 
 1. Click on **+ Add directory (1)** then provide the name as **.well-known (2)** and click on **Ok (3)**.
    
-   ![](./Images/ETS3112.png)
-   ![](./Images/ETS3113.png)
+   ![](./Images/E3T1S11.png)
+
+   ![](./Images/E3T1S11-1.png)
 
 1. Click on **Upload (1)** and select **Browse for the files (2)**.
 
-   ![](./Images/ETS3114.png)
+   ![](./Images/E3T1S12.png)
 
 1. Click on **Downloads (1)** and select **did.json (2)** then click on **Open (3)**.
 
-   ![](./Images/ETS3115.png)
+   ![](./Images/E3T1S13.png)
 
 1. Click on **Upload**.
 
-   ![](./Images/ETS3116.png)
+   ![](./Images/E3T1S14.png)
 
 1. Now, naviagte back to Microsoft Entra admin center, and click on **Refresh registration status (1)**. Once the status is **Verified (2)**, click on **Close (3)**.
 
-   ![](./Images/ETS3117.png)
+   ![](./Images/E3T1S15.png)
 
 1. Now on the overview page, Click on **Verify** under Verify domain membership.
 
-   ![](./Images/ETS3118.png)
+   ![](./Images/E3T1S16.png)
 
-1. Click on **Download (1)** then select the file location as **Desktop (2)** and click on **Save (3)**
+1. Click on **Download (1)**.
 
-   ![](./Images/ETS3119.png)
+   ![](./Images/E3T1S17.png)
 
-1. Navigate back to Azure portal and click on **Upload (1)** and select **Browse for the files (2)**.
+1. Navigate back to Azure portal, click on **Upload (1)** and select **Browse for files (2)**.
 
-   ![](./Images/ETS3120.png)
+   ![](./Images/E3T1S18.png)
 
 1. Click on **Downloads (1)** and select **did-configuration.json (2)** then click on **Open (3)**.
 
-   ![](./Images/ETS3122.png)
+   ![](./Images/E3T1S19.png)
 
 1. Click on **Upload**.
 
-   ![](./Images/ETS3123.png)
+   ![](./Images/E3T1S20.png)
 
 1. Now, naviagte back to Microsoft Entra admin center, and click on **Refresh registration status (1)**. Once the status is **Verified (2)**, click on **Close (3)**.
 
-   ![](./Images/ETS3124.png)
+   ![](./Images/E3T1S21.png)
 
 1. On the Overview page, now you can see the **Verified Domain**
 
-   ![](./Images/ETS3125.png)
-   >**Note**: if it is still showing **Domain may not be verified**, click on **Verify**,click on **Refresh registration status**. If the registration is successful, click on **Close** and check again.
-   ![](./Images/ETS3126.png)
+   ![](./Images/E3T1S22.png)
+
+   >**Note**: if it is still showing **Domain may not be verified**, click on **Verify**, select **Refresh registration status**. If the registration is successful, click on **Close** and check again.
+   >![](./Images/E3T1S22-1.png)
 
 1. Now, click on **+ Create credential** to create a new credential type.
 
-   ![](./Images/ETS3127.png)
+   ![](./Images/E3T1S23.png)
 
 1. Click **Verified credential** and then **Next**.
 
-   ![](./Images/ETS3128.png)
+   ![](./Images/E3T1S24.png)
 
 1. Provide below Information and click on **Update (4)** and verify the display card styling:
 
@@ -158,90 +159,125 @@ In this task, you will set up Microsoft Entra Verified ID for your organization.
    - **Text color**: #FFFFFF **(2)**
    - **Background color** : #0068cd **(3)**.
 
-   ![](./Images/ETS3129.png)
+      ![](./Images/E3T1S25.png)
 
 1. Scroll down and click on **Create**.
 
-   ![](./Images/ETS3130.png)
+   ![](./Images/E3T1S26.png)
 
 ## Task 2: Issue Verifiable Credentials
 
 In this task, you will configure the credential issuance process and issue a verifiable credential to a test user who will receive it in their Microsoft Authenticator app.
 
-1. Navigate to **Verified employee** page, click on **Issue a credential**. Ensure **Allow all Microsoft Entra ID users within the tenant (1)** is selected and check the box **Issue credentials through My Account (2)**.
+1. Navigate to **Verified employee** page, click on **Issue a credential (1)**. Ensure **Allow all Microsoft Entra ID users within the tenant (2)** is selected and check the box **Issue credentials through My Account (3)**.
 
-   ![](./Images/ETS3131.png)
-
-   ![](./Images/ETS3132.png)
+   ![](./Images/E3T2S1-1.png)
 
 1. Scroll down and click on **Save**.
 
-   ![](./Images/ETS3133.png)
+   ![](./Images/E3T2S2.png)
 
 1. Navigate to  **Overview (1)** under Verified ID and click on **Try it now (2)** under Get the new credentials.
 
-   ![](./Images/ETS3134.png)
+   ![](./Images/E3T2S3.png)
 
-1. It will be redirect to the **MyAccount** portal. Click on **Get my Verified ID**. 
+1. You will be redirected to the **MyAccount** portal. To continue with the lab using the classic experience, click on **Use previous version**.
 
-   ![](./Images/ETS3136.png)
-   >**Note**: if you haven't get the option **Get my Verified ID**, wait for few minutes and click on refresh.
+   ![](./Images/E3T2S4-1.png)
 
-1. A QR code is displayed. Scan it from the Authenticator app in your mobile and **Add** the credentials to your Verified ID. Once it is completed click on **Done**
+ 1. Click on **Get my Verified ID**. 
 
-   ![](./Images/ETS3137.png)
+    ![](./Images/E3T2S4.png)
+
+   >**Note**: If you haven't get the option **Get my Verified ID**, wait for few minutes and click on refresh.
+
+1. A QR code is displayed **(1)**. Scan it from the Authenticator app in your mobile and **Add** the credentials to your Verified ID. Once it is completed click on **Done (2)**
+
+   ![](./Images/E3T2S5.png)
 
 1. Now navigate back to Microsoft Entra admin center. On the **Overview** page of Verified ID, click on **Try it now** under use your credentials.
 
-   ![](./Images/ETS3135.png)
+   ![](./Images/E3T2S6.png)
 
 1. It will redirect to a sample website to use your credentials. Click on **Access discounts**.
 
-   ![](./Images/ETS3138.png)
+   ![](./Images/E3T2S7.png)
 
 1. On the sign-in page, Click on **Verify my employee credentials**
 
-   ![](./Images/ETS3139.png)
+   ![](./Images/E3T2S8.png)
 
 1. A QR will be displayed. Scan it from the Authenticator App in your mobile and click on **Share**.
 
+   ![](./Images/E3T2S9.png)
+
 1. Once it is successful, you can see discount is applied and price of the latops has been changes.
 
-   ![](./Images/ETS3140.png)
+   ![](./Images/E3T2S10.png)
 
 1. Navigate back to Entra admin portal, then Credenitals under Verified ID. Select Verified employee. 
 
 1. Copy the Manifesh URL and paste it in notepad.
+
 ## Task 3: Verify Credentials in Sample Application (Help Desk Scenario)
 
 In this task, you will simulate a real-world help desk identity verification scenario using Microsoft Entra Verified ID. Instead of traditional methods like passwords or security questions, the user will present a verified credential to securely prove their identity.
 
 ### Task 3.1: Deploy sample verification application
 
-1. Now navigate back to Microsoft Entra admin center. click on **Organization setting** under Verified ID and copy the **DID Authority** and paste it in the notepad.
+1. Navigate back to the Microsoft Entra admin center. Under **Verified ID**, select **Organization settings** and copy the **Decentralized identifier (DID)**. Paste the value into Notepad for later use.
 
-   ![](./Images/ETS3201.png)
+   ![](./Images/E3T3-1S1.png)
 
-1. Navgate back to Azure portal, go to Micorosft Entra ID, then App registrations, select All application. Select an application named as `https://odl_user_sp_<inject key="DeploymentID" enableCopy="false" />`.
+1. Navigate back to the Azure portal and search for **Microsoft Entra ID**.
 
-1. From the Overview page, copy the Application (client ID) and Directory (tenant ID), paste it in the notepad.
+1. From the left navigation pane, select **App registrations (1)** and then click on **All applications (2)**. Select the application named **odl_user_sp_<inject key="DeploymentID" enableCopy="false" /> (3)**.
 
-1. Navigate to Certificated & secrets, we will need to create a new secret for authentication purpose. Click on + New client secret under Client secrets (1). Provide the below details and select Add.
-
-   - Description: authentication
-   - Expires: Keep it default
-
-1. Once created, make sure the copy the Value and paste it in notepad, you will need it while deploying a web app in further steps.
-
-1. Go to API permissions, select Add a permission. Click on APIs my organization uses on Request API permissions page, then select Verifiable Credentials Service Request. 
-
-1. Select Application permissions, then check the box for VerifiableCredential.Create.All and click on Add permissions.
-
-1. On the Configured permissions page, select Grant admin consent for.. and then on the pop-up click on Yes.
+   ![](./Images/E3T3-1S3.png)
 
 
+1. From the **Overview** page, copy the following values and paste them into Notepad:
+   - **Application (client) ID**
+   - **Directory (tenant) ID**
 
-1. Open a new tab and Paste the below link to deploy a helpdesk app using App services in Azure portal.
+      ![](./Images/E3T3-1S4.png)
+
+1. From the left navigation pane, select **Certificates & secrets**. Under **Client secrets**, click on **+ New client secret**.
+
+   ![](./Images/E3T3-1S5.png)
+
+1. On the **Add a client secret** page, provide the following details and Click on **Add**.
+
+   - **Description**: `authentication`
+   - **Expires**: Keep the default value
+
+      ![](./Images/E3T3-1S6.png)
+
+1. Once the client secret is created, copy the **Value** and paste it into Notepad. This value will be required during the web application deployment.
+
+   ![](./Images/E3T3-1S7.png)
+
+1. From the left navigation pane, select **API permissions (1)** and then click on **+ Add a permission (2)**.
+
+   ![](./Images/E3T3-1S8.png)
+
+1. On the **Request API permissions** page, select **APIs my organization uses (1)**. Search for and select **Verifiable Credentials Service Request (2) (3)**.
+
+   ![](./Images/E3T3-1S9.png)
+
+1. Select **Application permissions (1)**. Check the box for **VerifiableCredential.Create.All (2)** and then click on **Add permissions (3)**.
+
+   ![](./Images/E3T3-1S10.png)
+
+1. Back on the **Configured permissions** page, click on **Grant admin consent for...**.
+
+   ![](./Images/E3T3-1S11.png)
+
+1. On the **Grant admin consent confirmation** pop-up, click on **Yes**.
+
+   ![](./Images/E3T3-1S12.png)
+
+1. Open a new browser tab and paste the following link to deploy the Help Desk verification application using Azure App Service.
 
    ```
    https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure-Samples%2Factive-directory-verifiable-credentials-node%2Fmain%2F1-node-api-idtokenhint%2FARMTemplate%2Ftemplate.json
@@ -250,129 +286,179 @@ In this task, you will simulate a real-world help desk identity verification sce
 1. If Prompted to sign in, provide the below credentials:
 
    - Username: Paste the username  **<inject key="AzureUserEmail"></inject>** then click on **Next**.
-      ![](./Images/ETS3107.png)
+
+      ![](./Images/GS6.png)
 
    - Password:  Paste the password **<inject key="AzureUserEmail"></inject> (1)** and click on **Sign in (2)**.
-      ![](./Images/ETS3108.png)
+
+      ![](./Images/GS6-1.png)
 
       >**Note:** If there's a dialog box saying **Stay signed in**, then select the **No** option.
 
-1. provide the below information and click on **Review + create (5)**.
+1. Provide the below detail, click on **Review + create (10)** and then **Create**.
 
    - **Subscription**: Leave it as default **(1)**
-   - **Resource group**: ODL-<inject key="DeploymentID"></inject> **(2)**
-   - **Webapp name**: HelpDesk<inject key="DeploymentID"></inject> **(3)**
-   - **DID Authority**: Paste DID Authority (copied in task 3 step) **(4)**.
+   - **Resource group**: ODL-Entra-<inject key="DeploymentID"></inject>-01 **(2)**
+   - **Web App name**: helpdesk<inject key="DeploymentID"></inject> **(3)**
+   - **Az Tenant Id:** Paste the tenant ID copied in Step 4 **(4)**
+   - **Az Client Id:** Paste the application ID copied in Step 4 **(5)**
+   - **Az Client Secret:** Paste the value copied in Step 7 **(6)**
+   - **DID Authority**: Paste DID Authority copied in Step 1 **(7)**
+   - **Credential Manifest:** Paste the value copied in Task 2 Step 12 **(8)**
+   - **Credential Type:** **VerifiedEmploee** **(9)**
 
-   ![](./Images/ETS3202.png)
+      ![](./Images/E3T3-1S15.png)
 
-1. Click on **Create**.
+1. Once the deployment is succeeded then click on **Go to resource group**
 
-   ![](./Images/ETS3203.png)
+   ![](./Images/E3T3-1S16new.png)
 
-1. Once the deployment is succeeded then click on **Go to resource group**>
+1. Click on **helpdesk<inject key="DeploymentID"></inject>**. 
 
-   ![](./Images/ETS3204.png)
+   ![](./Images/E3T3-1S17.png)
 
-1. Click on **Appservice<inject key="DeploymentID"></inject>**. 
+1. From the left navigation pane of the App Service, under **Settings**, select **Environment variables (1)**. Locate the setting named **issuancePinCodeLength (2)** and select it.
 
-   ![](./Images/ETS3205.png)
+   ![](./Images/E3T3-1S18.png)
+
+1. Clear the value of the setting, ensuring that the value field is completely empty. Click on **Apply** to save the changes.
+
+   ![](./Images/E3T3-1S19.png)
+
+1. From the left navigation pane, under **Settings**, select **Configuration (1)** and then navigate to the **Stack settings (2)** tab. Under **Startup command (3)**, replace the existing value with the following command. Click on **Apply (4)** to save the configuration changes.
+
+   ```
+   node app.js
+   ```
+   ![](./Images/E3T3-1S20.png)
 
 1. On the overview page, click on **Default domain**.
 
-   ![](./Images/ETS3206.png)
+   ![](./Images/E3T3-1S21.png)
 
 ### Task 3.2: Configure Verification Request with Required Claims
 
-1. In the Microsoft Entra admin center, navigate to **Verified ID** > **Overview**.
+1. Navigate to the sample verification application deployed in the previous step.
 
-2. Review the **Verifier configuration** — the verification request specifies:
-   - Which credential type to request
-   - Which claims to extract from the presented credential
-   - The purpose/reason for the verification
+1. On the application homepage, review the available verification options Click on **Issue Credential**, then again click on **Issue Credential**.
 
-3. In the sample verification application, look for a **Settings** or **Configuration** page.
+      ![](Images/E3T3-2S2.png)
 
-4. Verify that the application is configured to request:
-   - **Credential type**: `VerifiedEmployee`
-   - **Accepted issuers**: Your tenant's DID (e.g., `did:web:contoso.com`)
-   - **Required claims**: `displayName`, `jobTitle`
+      ![](Images/E3T3-2S2-1.png)
 
-   ![Verification configuration](Images/ex3-task3-verification-config.png)
+1. A QR code will be displayed, on your mobile phone, scan the QR code. It will open a Authenticator app. 
+
+   ![](Images/E3T3-2S3.png)
+
+1. On Authenticator, click on Sign in to your account, add an account by providing below mentioned credentials and click on **Next**.
+   
+      - Enter **Username/Email:** <inject key="AzureAdUserEmail"></inject> in the **Sign in** field. Click **Next** to continue.
+
+      - Enter **Password:** <inject key="AzureAdUserPassword"></inject> and click **Sign in**
+
+1. Once the credentials are added, on the sample application, you will get a message stating **Issuance completed**. 
+
+   ![](Images/E3T3-2S5.png)
 
 ### Task 3.3: Present Credential from Authenticator to Verify Identity
 
-1. On the verification application page, click **Verify My Identity** or **Verify Employee Credential**.
+1. Navigated back to Azure portal, click on Default Domain to launch the sample application.
 
-2. A QR code will be displayed on screen (or a deep link if accessing on mobile).
+1. On the application page, click **Verify Credential**.
 
-   ![Verification QR code](Images/ex3-task3-verification-qr.png)
+   ![](Images/E3T3-3S2.png)
 
-3. On your smartphone with Microsoft Authenticator:
-   
-   a. Open the **Microsoft Authenticator** app
-   
-   b. Navigate to the **Verified ID** or **Credentials** section
-   
-   c. Tap on the **Verified Employee** credential
-   
-   d. Tap **Present** or use the scan function to scan the QR code
-   
-   e. The app will display what claims will be shared and with whom
+1. On the Presentation of VerifiedEmployee page, click on **Verify Credential**.
 
-4. Review the presentation request:
-   - **Requestor**: The verification application (help desk)
-   - **Claims requested**: Display name, job title
-   - **Purpose**: Identity verification for help desk
+   ![](Images/E3T3-3S3.png)
 
-5. Tap **Share** to present the credential.
+1. A QR code will be displayed on screen (or a deep link if accessing on mobile).
+
+   ![](Images/E3T3-3S4.png)
+
+1. On your smartphone with Microsoft Authenticator:
+   
+   - Open the **Microsoft Authenticator** app, scan the QR code.
+   
+   - It will navigate to the **Verified ID** section
+   
+   - Tap on the **Verified Employee** credential and then **confirm**. Select **Next**.
+
+1. After presenting the credential, return to the browser displaying the verification application.
 
 ### Task 3.4: Review Verification Results and Extracted Claims
 
-1. After presenting the credential, return to the browser showing the verification application.
+1. Review the verification result page. The page should display a successful credential presentation message similar to **VerifiedEmployee Presentation received**.
 
-2. The verification result page should display:
-   - **Verification status**: Verified
-   - **Credential type**: VerifiedEmployee
-   - **Issuer DID**: Your Verified ID issuer DID
-   - **Extracted claims** such as:
-     - Display Name
-     - Given Name
-     - Surname
-     - Email Address
-   - **Credential validity**: Valid (within expiry date)
-   - **Credential revocation status**: VALID
+   ![](Images/E3T3-4S1.png)
 
-   The page also displays additional verifiable credential details such as:
-   - Subject DID
-   - Credential ID (jti)
-   - Issuance date
-   - Expiration date
-   - Domain validation details
-     
-   ![Verification result](Images/ex3-task3-verification-result.png)
+1. Observe the extracted claims displayed by the application, including:
+   - `displayName`
+   - `givenName`
+   - `surname`
+   - `mail`
+   - `revocationId`
+   - `photo` (if configured)
 
-3. In the Microsoft Entra admin center, navigate to **Verified ID** > **Overview** section, scroll down to see the **Activity log**.
+      ![](Images/E3T3-4S2.png)
 
-4. Review the Verification activity to see the recent verification event logged.
+1. Review the verifiable credential details displayed on the page, such as:
+   - **Issuer DID**
+   - **Credential type**
+   - **Credential state**
+   - **Issuance date**
+   - **Expiration date**
+   - **Domain validation details**
+
+      ![](Images/E3T3-4S3.png)
+   
+1. Verify that:
+   - The credential type is displayed as `VerifiedEmployee`
+   - The credential revocation status shows `VALID`
+   - The credential contains the expected user identity claims
+
+      ![](Images/E3T3-4S4.png)
+
+3. In the Microsoft Entra admin center, navigate to **Verified ID** > **Overview** section, scroll down to see the **Activity log**. Review the recent verification activity displayed in the activity log.
+
+   ![](Images/E3T3-4S5.png)
 
 ### Task 3.5: Review Verification Logs in Microsoft Entra
 
 1. Navigate to **Entra ID** > **Monitoring & health** > **Audit logs**.
 
-2. Apply the following filers:
+1. Apply the following filers:
    - **Service**: Verified ID 
    - **Date range**: Last 24 hours
+      
+      ![](Images/E3T3-5S1.png)
 
-3. Review the audit log entries for:
-   - Credential issuance events
-   - Credential verification events
+1. Review the audit log entries displayed on the page. Observe the different Verified ID activities recorded in the audit logs, including:
+   - **Verifiable Credential Issued**
+   - **Create authority**
+   - **Create contract**
+   - **Update MyAccount settings**
 
-4. Click on a log entry to see detailed information including:
-   - The request ID
-   - The verifier application
-   - The credential type presented
-   - Whether verification was successful
+      ![](Images/E3T3-5S3.png)
+
+1. Click on a verification or issuance activity entry to review the detailed audit information.
+
+   ![](Images/E3T3-5S4.png)
+
+1. Observe the audit log details, including:
+   - **Activity Type** (for example, Verifiable Credential Issued)
+   - **Date and time** of the operation
+   - **Status** of the request
+   - **Correlation ID**
+   - **Initiated by (actor)** details
+   - **Application information**
+   - **Service principal details**
+
+      ![](Images/E3T3-5S5.png)
+
+1. Verify that the activity status is displayed as **Success**, confirming that the verifiable credential operation was completed successfully.
+
+   ![](Images/E3T3-5S6.png)
 
 ### Task 3.6: Understanding Real-World Help Desk Use Cases
 
