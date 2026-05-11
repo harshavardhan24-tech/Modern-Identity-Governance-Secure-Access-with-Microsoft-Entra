@@ -37,32 +37,42 @@ In this task, you will activate Microsoft Entra Global Secure Access in your ten
 
 1. In the left navigation pane, expand **Global Secure Access (1)** then select **Dashboard (2)** and click on **Activate (3)**.
 
-   ![](./Images/ETS2101.png)
+   ![](./Images/E2T1S1new.png)
 
 1. Once activated, you will get a notification Tenant activation is completed successfully.
 
-   ![](./Images/ETS2102.png)
+   ![](./Images/E2T1S2.png)
 
 ## Task 2: Configure Entra Private Access
 
 In this task, you will configure Microsoft Entra Private Access by enabling traffic forwarding and deploying a Private Access connector. You will create an application segment and assign users to securely access internal resources. Finally, you will validate connectivity by accessing a private resource (RDP) through the Global Secure Access client without using a traditional VPN.
 
 1. In the Microsoft Entra admin center, navigate to **Traffic forwarding(1)**
-and enable the **Private access profile (2)**. Once it is enabled click on **View (3)** to add the user and group assignments.
+and enable the **Private access profile (2)**. Click on **Ok** on the pop-up window.
 
-   ![](./Images/ETS2104.png)
+   ![](./Images/E2T2S1.png)
 
-1. Enable **Assign to all users (1)** and click on **Done (2)**.
+   ![](./Images/E2T2S1-1.png)
 
-   ![](./Images/ETS2105.png)
+1. Once it is enabled click on **View (3)** to add the user and group assignments.
+
+   ![](./Images/E2T2S2.png)
+
+1. Enable **Assign to all users (1)**, on pop-up, click on **OK (2)**, once enabled select **Done (3)**.
+
+   ![](./Images/E2T2S3-1.png)
+
+   ![](./Images/E2T2S3-2.png)
+
+   ![](./Images/E2T2S3-3.png)
 
 1. Now navigate to **Connectors and sensors (1)** and click **Download connector service (2)** to download the Private Access connector installer.
 
-   ![](./Images/ETS2106.png)
+   ![](./Images/E2T2S4.png)
 
 1. Click on **Accept terms & Download**.
 
-   ![](./Images/ETS2107.png)
+   ![](./Images/E2T2S5.png)
 
 1. Once installer file is downloaded click on **Open file**
 
@@ -74,13 +84,13 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
 
 1. While installing, it will prompt to sign in. Provide the below credentials:
 
-   - Username: Paste the username  ** <inject key="AzureAdUserEmail"></inject> in the **Sign in** field. Click **Next** to continue.
+   - **Username:** Paste the username  <inject key="AzureAdUserEmail"></inject> in the **Sign in** field. Click **Next** to continue.
 
-      ![](./Images/ETS2110.png)   
+      ![](./Images/GS6.png)   
 
-   - Password:  Paste the password <inject key="AzureAdUserPassword"></inject> **(1)** and click **Sign in (2)**
+   - **Password:**  Paste the password <inject key="AzureAdUserPassword"></inject> **(1)** and click **Sign in (2)**.
 
-      ![](./Images/ETS2112.png)  
+      ![](./Images/GS6-1.png)  
 
 1. Once installation is completed, click on **Close**
 
@@ -88,13 +98,13 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
 
 1. Navigate to **Microsoft Entra admin portal** and check the **Connectors** status as **Active**.
 
-   ![](./Images/ETS2114.png) 
+   ![](./Images/E2T2S10.png) 
 
    >**Note**: If the connector is not appeared, refresh the browser and check again.
 
 1. Navigate to **Applications (1)** then select **Quick Access (2)**. Provide the Name as **Quick actions (3)** and click on **+ Add Quick Access application segment (4)**.
 
-   ![](./Images/ETS2115.png) 
+   ![](./Images/E2T2S11.png) 
 
 1. Provide the below details and click **Apply (5)** to add the segment.
 
@@ -103,44 +113,46 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
    - **Ports**: `3389`  **(3)**
    - **Protocol**: TCP **(4)**
 
-      ![](./Images/ETS2116.png) 
+      ![](./Images/E2T2S12.png) 
 
 1. Click **Save** to create the Quick Access application segment.
 
-   ![](./Images/ETS2117.png)
+   ![](./Images/E2T2S13.png)
 
 1. Navigate to **Quick Acces (1)** under Applications, select **Users and groups (2)** and click **+ Add user/group (3)**.
 
-   ![](./Images/ETS2118.png)
+   ![](./Images/E2T2S14.png)
 
    >**Note**: If you could not find users and groups option, click on **Quick access** again in the left pane to get the option.
 
-1. Click on **None selected (1)** then select **IT-Department (2)** and click on **select**
+1. Click on **None selected (1)** then select **IT-Department (2)** and click on **select (3)**.
 
-   ![](./Images/ETS2119.png)
+   ![](./Images/E2T2S15.png)
 
-1. Click on **Assign** to add the group
+1. Click on **Assign** to add the group.
 
-   ![](./Images/ETS2120.png)
+   ![](./Images/E2T2S16.png)
 
-1. Now, in your desktop **Start** menu, search for **rdp (1)** and select **Remote Connection Desktop (2)**.
+1. Now, in your desktop **Start** menu, search for **RDP (1)** and select **Remote Connection Desktop (2)**.
 
-   ![](./Images/ETS2121.png)
+   ![](./Images/E3T3S3.png)
 
-1. Provide Computer Name as <inject key="ClientVM DNS Name"></inject> then click on **Connect**.
+1. Provide Computer Name as <inject key="ClientVM DNS Name"></inject> **(1)** then click on **Connect (2)**.
 
-   ![](./Images/ETS2122.png)
+   ![](./Images/E3T3S4.png)
 
-1. Now click on **More choices (1)** then select **Use different account (2)**. Provide the below credentials and click on **Ok (5)**.
+1. Now click on **More choices (1)** then select **Use a different account (2)**. Provide the below credentials and click on **OK (5)**.
 
       - Username :  .\ <inject key="ClientVM Admin Username"></inject> **(3)**
       - Password :  <inject key="ClientVM Admin Password"></inject> **(4)**
 
-      ![](./Images/ETS2123.png)
+         ![](./Images/E2T1S19.png)
 
 1. Now Click on **Yes** to connect to the **Client VM**
 
       ![](./Images/ETS2124.png)
+
+   >Note: A window will appeat to Choose privacy setting for your device, click on **Next** and then **Accept**.
 
 1. On the Client VM Desktop, double click on **Global Secure Access Client** installer file.
    
@@ -148,7 +160,7 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
 
 1. On the Global Secure Access Client, click on **Sign in**.
 
-   ![](./Images/ETS2129.png)
+   ![](./Images/E1T2S22.png)
 
 1. If prompted sign in with the below credentials.
 
@@ -158,44 +170,56 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
 
    - **Password:**  Paste the password **<inject key="User's Password"></inject> (1)** and click on **Sign in (2)**.
 
-      ![](./Images/ETS1420.png)
+      ![](./Images/E1T2S23-2.png)
 
 1. On **Sign in to all apps and websites on this device** pop up, select **Yes**.
 
-   ![](./Images/ETS2130.png)
+   ![](./Images/E1T2S24.png)
 
 1. On **Allow your Oraganization to manage your device** pop up. Select **Yes**.
 
-   ![](./Images/ETS2131.png)
+   ![](./Images/E1T2S25.png)
 
 1. On the **Account added to this device** select **Done**.
 
    ![](./Images/ETS2132.png)
 
-1. Wait for few seconds and check the status as **Connected**
+1. Wait for few seconds and check the status as **Connected**.
 
-   ![](./Images/ETS2133.png)
+   ![](./Images/E1T2S27.png)
 
-1. Now in the **Start** menu, search for **RDP (1)** and select **Remote Connection Desktop (2)**.
+1. Navigate to Azure portal, search for **Virtual machines (1)** and select it **(2)**.   
 
-   ![](./Images/ETS2121.png)
+   ![](./Images/E1T2S28.png)
 
-1. In the **Computer** field, enter the **private IP address** of the RDP server  `10.0.0.5`. Click **Connect**.
+1. Select rdpvm-<inject key="Deployment ID" enableCopy="false"></inject> from the list. Copy **Private IP address** and paste it in the notepad.
+
+   ![](./Images/E1T2S29.png)
+
+   ![](./Images/E1T2S29-1.png)
+
+1. Navigate to ClientVM, in the **Start** menu, search for **RDP (1)** and select **Remote Connection Desktop (2)**.
+
+   ![](./Images/E3T3S3.png)
+
+1. In the **Computer** field, enter the **private IP address (1)** of the RDP server copied in Step 29. Click **Connect (2)**.
 
    ![](./Images/ETS2122.png)
 
 1. Enter the credentials for the RDP server when prompted and click on **Ok (3)**.
 
-      - Username : <inject key="username"></inject> **(1)**
-      - Password :  <inject key="Password"></inject> **(2)**
+      - Username : <inject key="adminUsername"></inject> **(1)**
+      - Password :  <inject key="admingPassword"></inject> **(2)**
 
-      ![](./Images/ETS2127.png)
+      ![](./Images/E3T3S6.png)
 
 1. Now Click on **Yes** to connect to the **RDPserver**
 
       ![](./Images/ETS2124.png)
 
 1. Verify that the RDP session establishes successfully — this traffic is being routed through the Global Secure Access Private Access tunnel without a traditional VPN.
+
+   ![](./Images/E2T2S34.png)
 
    > **Note:** RDP should connect successfully using only the private IP address, even without a VPN, because the Global Secure Access client is tunneling the traffic to the Private Access connector on the corporate network.
 
@@ -205,63 +229,67 @@ and enable the **Private access profile (2)**. Once it is enabled click on **Vie
 
 In this task, you will apply Conditional Access policies specifically to Private Access traffic, requiring device compliance and MFA before users can connect to private resources.
 
-1. In the Lab VM, navigate back to Microsoft Entra admin center and select **Conditional access (1)** in the **Quick Access** page and click on **+ New policy (2)**.
+1. In the Lab VM, navigate back to Microsoft Entra admin center, expand **Global Secure Accesss (1)**, then **Application (2)**, under it click on **Quick Access (3)**, select **Conditional Access (4)**. Click on **+ New policy (5)**.
 
-   ![](./Images/ETS2211.png)
+   ![](./Images/E2T3S1.png)
 
 1. Configure the Conditional Access Policy with the following details:
 
-   - Name: **Require Compliant Device for Private Access** **(1)**
-   - **Assignments**:
-     - Click on **0 users or agents (Preview) selected** **(2)** under Users or agents (Preview) option.
-     - A new window will slide in, click on **Select users and Groups** **(3)** and then select the check box saying **Users and groups** **(4)**
-     - Now a Select window will open, here select **IT-Department** and then click on **Select** **(5)** button.
+   - **Name:** Require Compliant Device for Private Access **(1)**
+   - **Assignments**: Click on **0 users or agents (Preview) selected** **(2)** under Users or agents (Preview) option.
+
+      ![](./Images/E2T3S2-1.png)
+
+   - A new window will slide in, click on **Select users and Groups** **(1)** then select the check box saying **Users and groups** **(2)**
+
+   - Select window will open, select **IT-Department (3)** and then click on **Select**  button.
    
-         ![](./Images/ETS2212.png)
+      ![](./Images/E2T3S2-2.png)
    
-      - Click on **1 resources included** **(1)** under Target resources option and verify that **Quick Access** **(2)** is already selected
+   - Click on **1 resources included** **(1)** under Target resources option and verify that **Quick actions** **(2)** is already selected.
 
-         ![](./Images/ETS2213.png)
+      ![](./Images/E2T3S2-3.png)
 
-      - Click on **0 conditions selected** **(1)** under Conditions option.
-      - Then select **Device platforms** **(2)**
-      - Now in the Device platforms blade, toggle the *Configure* switch to **Yes** **(3)** and make sure that all the checkboxes below are selected.
-      - Then click on **Done** **(4)**
+   - Click on **0 conditions selected** **(1)** under Conditions option. Then select **Not configured (2)** under Device platforms.
 
-         ![](./Images/ETS2216.png)
+      ![](./Images/E2T3S2-4.png)
 
-      - Click on **0 controls selected (1)** of `Grant` Section under the Access Control option.
-      - In the **Grant** pane, click on **Grant access**
-      - Select the check boxs saying **Require multi-factor authentication** **(2)** and **Require device to be marked as compliant (3)**
-      - Then click on **Select** **(4)**
+   - Now in the Device platforms blade, toggle the *Configure* switch to **Yes (1)** and make sure that all **Any device (2)** option is selected. Then click on **Done** **(3)**
 
-         ![](./Images/ETS2214.png)
+      ![](./Images/E2T3S2-5.png)
+
+   - Click on **0 controls selected (1)** of `Grant` section under the Access Control option.
+
+      ![](./Images/E2T3S2-6.png)
+
+   - In the **Grant** pane, click on **Grant access**. Select the check box for **Require multi-factor authentication (1)** and **Require device to be marked as compliant (2)**. Then click on **Select** **(3)**. 
+
+      ![](./Images/E2T3S2-7.png)
    
-      - Toggle the **Enable Policy** switch to **On (1)** and click on **Create (2)**.
+   - Toggle the **Enable Policy** switch to **On (1)** and click on **Create (2)**.
 
-         ![](./Images/ETS2215.png)
-         >**Note**: Applying Conditional access policy will take few minutes to reflect.
+      ![](./Images/E2T3S2-8.png)
+         
+      >**Note**: Applying Conditional access policy will take few minutes to reflect.
 
-1. Now again in the **Start** menu, search for **RDP (1)** and select **Remote Connection Desktop (2)**.
+1. Now again in the **Start** menu, search for **RDP (1)** and select **Remote Desktop Connection (2)**.
 
-   ![](./Images/ETS2121.png)
+   ![](./Images/E3T3S3.png)
 
-1. In the **Computer** field, enter the **private IP address** of the RDP server  `10.0.0.5`. Click **Connect**.
+1. In the **Computer** field, enter the **private IP address (1)** of the RDP server. Click **Connect (2)**.
 
-   ![](./Images/ETS2122.png)
+   ![](./Images/E3T3S4.png)
 
 1. It will prompt for MFA. Enter the digit displayed on the Screen in the Authenticator app on your mobile and tap on **Yes**.
 
-   ![](./Images/ETS2187.png)
+1. Once it is authenticated, enter the credentials for the RDP server when prompted and click on **OK (3)**.
 
-1. Once it is authenticated, enter the credentials for the RDP server when prompted and click on **Ok (3)**.
+      - Username : <inject key="adminUsername"></inject> **(1)**
+      - Password :  <inject key="adminPassword"></inject> **(2)**
 
-      - Username : <inject key="username"></inject> **(1)**
-      - Password :  <inject key="Password"></inject> **(2)**
+         ![](./Images/E3T3S6.png)
 
-      ![](./Images/ETS2127.png)
-
-1. Now Click on **Yes** to connect to the **RDPserver**
+1. Now Click on **Yes** to connect to the **RDP server**.
 
       ![](./Images/ETS2124.png)
 
@@ -273,95 +301,107 @@ In this task, you will configure Microsoft Entra Internet Access by enabling tra
 
 1. In the Microsoft Entra admin center, navigate to **Global Secure Access** expand **Connect (1)** and click on **Traffic forwarding (2)** then toggle the **Internet access profile (3)** to **Enabled**.
 
-   ![](./Images/ETS2311.png)
+   ![](./Images/E3T4S1.png)
 
 1. Click on **Enable Microsoft and Internet Access profiles**
 
-   ![](./Images/ETS2312.png)
+   ![](./Images/E3T4S2.png)
 
 1. On the Internet access profile, click on **View** to add the users.
 
-   ![](./Images/ETS2313.png)
+   ![](./Images/E3T4S3.png)
 
-1. Enable **Assign to all users (1)** and click on **Done (2)**.
+1. Enable **Assign to all users (1)**. On the pop-up click on **OK (2)**. Once enable, click on **Done (3)**.
 
-   ![](./Images/ETS2105.png)
+   ![](./Images/E3T4S4-1.png)
+
+   ![](./Images/E3T4S4-2.png)
+
+   ![](./Images/E3T4S4-3.png)
 
 1. Repeat the same steps for **Microsoft traffic profile** to add the users.
 
-1. Now expand **Secure (1)** select **Web content filtering policies (2)** and click **+ New policy (3)**.
+   ![](./Images/E3T4S5.png)
 
-   ![](./Images/ETS2314.png)
+1. Now expand **Secure (1)**, select **Web content filtering policies (2)** then click on **+ Create policy (3)**.
+
+   ![](./Images/E3T4S6.png)
 
 1. On the **Create a web content filtering policy** page, provide name as **BlockAccess (1)** and click on **Next (2)**.
 
-   ![](./Images/ETS2315.png)
+   ![](./Images/E3T4S7.png)
 
 4. Under **Policy rules**, click **+ Add rule (1)**:
 
    - **Rule name**: `Blockcategory` **(2)**
    - **Destination type**: Webcategory **(3)**
-   - **Url destination**: Search and select **Streaming media and download **(4)**
+   - **Search**: Search **Streaming Media And Downloads (4)** and select **(5)** it.
+   - Click on **Add (6)**, after added select **Next (7)** .
 
-1. Click on **Add (5)** and click on **Next (6)** 
+       ![](./Images/E3T4S8.png)
 
-   ![](./Images/ETS2316.png)
+1. On the **Review** tab, click on **Create policy**.
 
-1. On the **Review** tab, click on **Create policy**
+   ![](./Images/E3T4S9.png)
 
-   ![](./Images/ETS2317.png)
+1. Navigate to **Security profiles (1)** under Secure and click on **+ Create profile (2)**.
 
-1. Navigate to **Security profiles (1)** and click on **+ Create profile (2)**.
-
-   ![](./Images/ETS2318.png)
+   ![](./Images/E3T4S10.png)
 
 1. Provide the profile name as **Webprofile (1)** and click on **Next (2)**.
 
-   ![](./Images/ETS2319.png)
+   ![](./Images/E3T4S11.png)
 
 1. Click on **+ Link profile (1)** and select **Existing web filtering policy (2)**.
 
-   ![](./Images/ETS2320.png)
+   ![](./Images/E3T4S12.png)
 
 1. On the link a policy tab, select **BlockAccess (1)** and click on **Add (2)**.
 
-   ![](./Images/ETS2321.png)
+   ![](./Images/E2T4S13.png)
 
 1. Once it is added, click on **Next**.
 
-   ![](./Images/ETS2322.png)
+   ![](./Images/E2T4S14.png)
 
 1. On the **Review** tab, click on **Create a profile**
 
-   ![](./Images/ETS2323.png)
+   ![](./Images/E2T4S15.png)
 
 1. Navigate to **ID Protection (1)** and select **Risk-based Conditional Access  (2)** then click on **+ New policy (3)**.
 
-   ![](./Images/ETS2324.png)
+   ![](./Images/E2T4S16.png)
 
 1. Configure the Conditional Access Policy with the following details:
 
       - Name: **Streamingwebsiteblocked** **(1)**
       - Click on **0 users or agents (Preview) selected** **(2)** under Users or agents (Preview) option.
-      - A new window will slide in, click on **Select users and Groups** **(3)** and then select the check box saying **Users and groups** **(4)**
-      - Now a Select window will open, here select **IT-Department** and then click on **Select** **(5)** button.
 
-         ![](./Images/ETS2325.png)
+         ![](./Images/E2T4S17-1.png)
+
+      - A new window will slide in, click on **Select users and groups** **(1)** and then select the check box for **Users and groups** **(2)**. Then, select window will open, click on **IT-Department (3)** and then **Select** button.
+
+         ![](./Images/E2T4S17-2.png)
 
       - Click on **No target resources selected** **(1)** under Target resources option.
+
+         ![](./Images/E2T4S17-3.png)
+
       - Click on **All internet resources with Global secure access** **(2)**
 
-         ![](./Images/ETS2326.png)
+         ![](./Images/E2T4S17-4.png)
 
       - Click on **0 controls selected (1)** of `Session` Section under the Access Control option.
-      - in the **Session** pane, select the check Box saying **use Global Secure Access Security profile (2)** **(2)** and select **Webprofile (3)**
-      - Then click on **Select** **(4)**
 
-         ![](./Images/ETS2327.png)
+         ![](./Images/E2T4S17-5.png)
+
+      - In the **Session** pane, select the check Box for **use Global Secure Access Security profile (1)** then, select **Webprofile (2)** and click on **Select (3)**.
+
+         ![](./Images/E2T4S17-6.png)
    
       - Toggle the **Enable Policy** switch to **On (1)** and click on **Create (2)**.
 
-         ![](./Images/ETS1418.png)
+         ![](./Images/E2T4S17-7.png)
 
 1. Open the ClientVM, verify the Global Secure Access client is connected from system tray.
 
@@ -376,7 +416,7 @@ In this task, you will configure Microsoft Entra Internet Access by enabling tra
    ![](./Images/ETS2329.png)
    >**Note**: These changes may take upto 1 hour to reflect. you can check this at the end of the lab. please proceed with next exercise.
 
-1. Now open other websites as your wish and check the website.
+1. Now open other websites as your wish and check the status.
 
 ## Task 5: Validate Access and Review Logs
 
@@ -390,14 +430,14 @@ In this task, you will collect and analyze network traffic using the Global Secu
 
    ![](./Images/ETS2512.png)
 
-1. Open browser and search for **Netflix or primevideo** and verify that the pages are not acceesiable.
+1. Open browser and search for **Netflix** or **primevideo** and verify that the pages are not acceesiable.
 
    ![](./Images/ETS2513.png)
 
-1. Now open **Remote desktop connection** and login into RDP server `10.0.0.5` using below credentials
+1. Now open **Remote desktop connection** and login into RDP server using Private ipaddress and provising below credentials: 
 
-      - Username : <inject key="username"></inject> **(1)**
-      - Password :  <inject key="Password"></inject> **(2)**
+      - Username : <inject key="adminUsername"></inject> **(1)**
+      - Password :  <inject key="adminPassword"></inject> **(2)**
 
       ![](./Images/ETS2127.png)
 
