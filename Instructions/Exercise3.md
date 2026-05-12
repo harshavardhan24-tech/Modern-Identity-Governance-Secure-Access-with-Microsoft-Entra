@@ -362,7 +362,7 @@ In this task, you will simulate a real-world help desk identity verification sce
 
 ### Task 3.3: Present Credential from Authenticator to Verify Identity
 
-1. Navigated back to Azure portal, click on Default Domain to launch the sample application.
+1. Navigate back to Azure portal, click on Default Domain to launch the sample application.
 
 1. On the application page, click **Verify Credential**.
 
@@ -460,7 +460,82 @@ In this task, you will simulate a real-world help desk identity verification sce
 
    ![](Images/E3T3-5S6.png)
 
-### Task 3.6: Understanding Real-World Help Desk Use Cases
+# Task 3.6: Review Face Check Verification Flow in Help Desk Application (Read-Only Task)
+
+In this task, you will review how Face Check can be integrated into the Help Desk verification application deployed in this lab. Although Face Check is not configured in the current lab environment, the following steps demonstrate how the verification flow would work in a real-world implementation.
+
+> **Note:** This is a read-only task intended for learning purposes only. Face Check is not configured in the current lab environment and cannot be fully validated in this test environment.
+
+1. In the Verified ID overview page, scroll down to the **Add-ons** section and verify whether the **Face Check** add-on is enabled.
+
+   ![](Images/E3T3-6S1.png)
+
+1. Navigate back to the deployed Help Desk verification application by opening the **Default domain** of the App Service created in the previous task.
+
+   ![](Images/E3T3-1S21.png)
+
+1. On the application homepage, click on **Issue Credential**.
+
+   ![](Images/E3T3-2S2.png)
+
+1. Observe the credential issuance page displaying the **Take Selfie** option.
+
+   ![](Images/E3T3-6S4.png)
+
+1. Review the information displayed on the page. Observe that:
+
+   - The credential includes a photo claim.
+   - The photo can later be used for biometric Face Check verification during credential presentation.
+   - The user can either:
+     - Take a live selfie.
+     - Upload an existing portrait image.
+
+1. Click on **Take Selfie**. Observe that a QR code is generated for camera access.
+
+   ![](Images/E3T3-6S6.png)
+
+1. In a production environment, the user would perform the following steps on a mobile device:
+
+   - Open a QR code reader application.
+   - Scan the displayed QR code.
+   - Select **Open Camera**.
+   - Capture a live selfie using the mobile device camera.
+   - Select **Use photo** to attach the image to the credential.
+
+1. Once the photo **(1)** is uploaded, click on **Issue Credential**. You will get a message stating **Issuance completed (3)**. Observe that the captured photo is not permanently stored by the application and is only embedded into the issued credential stored in the user’s wallet. 
+
+   ![](Images/E3T3-6S8.png)
+
+   ![](Images/E3T3-6S8-1.png)
+
+1. Navigate back to Azure portal, click on Default Domain to launch the sample application. On the application page, click **Verify Credential**. 
+
+   ![](Images/E3T3-6S9.png)
+
+1. On the Presentation of VerifiedEmployee page, click on **Verify Credential**.
+
+   ![](Images/E3T3-3S3.png)
+ 
+1. A QR code would then appear for credential issuance.
+
+   ![](Images/E3T3-3S4.png)
+
+1. The user would scan the QR code using **Microsoft Authenticator** to receive the credential containing the embedded photo claim.
+
+1. During a future credential verification request, Microsoft Entra Verified ID Face Check could compare:
+
+   - The live selfie captured during verification.
+   - The photo stored inside the credential.
+
+1. Once the verification is completed, review the verification result page. The page should display a successful credential presentation message similar to **VerifiedEmployee Presentation received**.
+
+   ![](Images/E3T3-4S1.png)
+
+1. This additional verification layer helps confirm that the person presenting the credential is the legitimate credential owner.
+
+1. Since Face Check requires additional licensing, configuration, and verification setup, the end-to-end biometric validation is not enabled in the current lab environment. This task is provided to help you understand the workflow and integration experience within the deployed Help Desk application.
+ 
+### Task 3.7: Understanding Real-World Help Desk Use Cases
 
 Consider a scenario where an employee contacts the IT help desk requesting access to a sensitive internal application or requesting an account unlock.
 
